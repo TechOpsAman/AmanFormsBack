@@ -8,6 +8,7 @@ import { logger } from './utils/logger';
 import { SeverityLevel } from './utils/severityLevel';
 import { config } from './config';
 import { AppRouter } from './router';
+import { createProxyMiddleware } from 'http-proxy-middleware';
 
 export class Server {
   public app: express.Application;
@@ -26,6 +27,21 @@ export class Server {
     this.app = express();
     this.configurationMiddleware();
     this.app.use(AppRouter);
+    this.app.use(
+      '/api/questions',
+      createProxyMiddleware({
+        target: config.questionsService.questionsCrudConnectionString,
+        changeOrigin: true,
+      })
+    );
+
+    this.app.use(
+      '/api/answers',
+      createProxyMiddleware({
+        target: config.answersService.answersCrudConnectionString,
+        changeOrigin: true,
+      })
+    );
     this.app.use(errorMiddleware);
     this.server = this.app.listen(config.server.port, () => {
       logger.log(

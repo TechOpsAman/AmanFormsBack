@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-//import { iSurvey, iSection } from './answers.interface';
 import { CompositorManager } from './compositor.manager';
 
 export class CompositorController {
