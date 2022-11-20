@@ -13,8 +13,6 @@ export class AnswerController {
   }
 
   static async deleteSurveyById(req: Request, res: Response): Promise<void> {
-    res.json(
-      await AnswerManager.deleteSurveyById(req.query.surveyId as string),
-    );
+    res.json(await AnswerManager.deleteSurveyById(req.query.surveyId as string));
   }
 }

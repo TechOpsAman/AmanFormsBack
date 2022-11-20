@@ -11,6 +11,6 @@ export class AnswerRepository {
   }
 
   static deleteSurveyById(surveyId: string): Promise<ISurvey | null> {
-    return AnswerModel.findByIdAndDelete(surveyId).exec();
+    return AnswerModel.findOneAndRemove({ surveyId: surveyId }).exec();
   }
 }

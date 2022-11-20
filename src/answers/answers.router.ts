@@ -10,6 +10,6 @@ const AnswerRouter: Router = Router();
 
 AnswerRouter.post('/', ValidateRequest(postSurveySchema), wrapAsync(AnswerController.create));
 AnswerRouter.get('/find', ValidateRequest(getSurveySchema), wrapAsync(AnswerController.showSurveyById));
-AnswerRouter.delete('/find', ValidateRequest(getSurveySchema), wrapAsync(AnswerController.deleteSurveyById));
+AnswerRouter.delete('/delete', ValidateRequest(getSurveySchema), wrapAsync(AnswerController.deleteSurveyById));
 
 export { AnswerRouter };   
