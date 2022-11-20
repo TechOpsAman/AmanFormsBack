@@ -1,25 +1,23 @@
 import { Router } from 'express';
-import * as express from 'express';
-// import {deletePersonByIDC, createPersonC, updatePersonByIDC, getPersonInGroupByNameC, getAllGroupsOfPersonC, deleteGroupByIDC, updateGroupByIDC, getAllGroupsAndPeopleInGroupC} from "./controller";
+import { wrapAsync } from '../utils/wrapper';
+import { CompositorController } from './compositor.controller';
+import { ValidateRequest } from '../utils/joi';
+import {
+  deleteSurveySchema,
+  getSurveyResultsSchema,
+} from './validator/compositor.schema';
 
-const compositorRoute: Router = express.Router();
+const compositorRouter: Router = Router();
 
-// Group:
+compositorRouter.delete(
+  '/deleteSurvey/:id/id',
+  ValidateRequest(deleteSurveySchema),
+  wrapAsync(CompositorController.deleteSurvey)
+);
+compositorRouter.get(
+  '/getSurveyResults/:id/id',
+  ValidateRequest(getSurveyResultsSchema),
+  wrapAsync(CompositorController.getSurveyResults)
+);
 
-// compositorRoute.get('/group/All/:id', getAllGroupsAndPeopleInGroupC); // .. !!!!
-
-// compositorRoute.delete('/group/:id', deleteGroupByIDC); // .. !!!!
-
-// compositorRoute.post('/group/update/:id', updateGroupByIDC); // .. !!!!
-
-// // Person:
-
-// compositorRoute.get('/person/:name/:id', getPersonInGroupByNameC); // .. !!!!
-// compositorRoute.get('/person/All/groups/:id', getAllGroupsOfPersonC); // .. !!!!
-
-// compositorRoute.delete('/person/:id', deletePersonByIDC); // .. !!!!
-
-// compositorRoute.post('/person', createPersonC); // .. !!!!
-// compositorRoute.post('/person/update/:id', updatePersonByIDC); // .. !!!!
-
-export default compositorRoute;
+export { compositorRouter };

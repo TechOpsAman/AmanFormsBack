@@ -1,48 +1,66 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-// TODO: Remove comments after implementing all tools and
-// when plans to use them!!!
-// import * as express from 'express';
-// import * as http from 'http';
-// import * as bodyParser from 'body-parser';
-// import * as morgan from 'morgan';
-// import { errorMiddleware } from './utils/errors/errorHandler';
-// import { logger } from './utils/logger';
-// import { SeverityLevel } from './utils/severityLevel';
-// import { config } from './config';
-// import { AppRouter } from './router';
+import * as express from 'express';
+import * as http from 'http';
+import * as bodyParser from 'body-parser';
+import * as morgan from 'morgan';
+import { errorMiddleware } from './utils/errors/errorHandler';
+import { logger } from './utils/logger';
+import { SeverityLevel } from './utils/severityLevel';
+import { config } from './config';
+import { AppRouter } from './router';
 
+export class Server {
+  public app: express.Application;
 
-// TODO: Change according to team convencions!!!
-// const app = express();
-// const PORT: number = config.COMPOSITOR_SERVER_PORT;
+  private server: http.Server;
 
-// app.use(cors());
-// app.use(express.json());
-// app.use('/', compositorRouter);
-// app.use(
-//   '/person',
-//   createProxyMiddleware({
-//     target: config.PERSON_API_BASE_URL,
-//     changeOrigin: true,
-//   })
-// );
+  public static startServer(): Server {
+    return new Server();
+  }
 
-// app.use(
-//   '/group',
-//   createProxyMiddleware({
-//     target: config.GROUP_API_BASE_URL,
-//     changeOrigin: true,
-//   })
-// );
+  public closeServer(): void {
+    this.server.close();
+  }
 
-// app.use(errorHandler);
+  private constructor() {
+    this.app = express();
+    this.configurationMiddleware();
+    this.app.use(AppRouter);
+    this.app.use(errorMiddleware);
+    this.server = this.app.listen(config.server.port, () => {
+      logger.log(
+        SeverityLevel.Informational,
+        `${config.server.name} listening on port ${config.server.port}`
+      );
+    });
+  }
 
-// connect();
+  private setHeaders = (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ) => {
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader(
+      'Access-Control-Allow-Methods',
+      'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+    );
+    res.setHeader(
+      'Access-Control-Allow-Headers',
+      'Authorization, Origin, X-Requested-With, Content-Type'
+    );
 
-// function connect() {
-//   app.listen(PORT, async () => {
-//     console.log('server is listening to port ' + PORT);
-//   });
-// }
+    if (req.method === 'OPTIONS') {
+      return res.status(200).end();
+    }
 
-// export default app;
+    return next();
+  };
+
+  private configurationMiddleware() {
+    this.app.use(morgan('dev'));
+    this.app.use(this.setHeaders);
+    this.app.use(bodyParser.json());
+    this.app.use(bodyParser.urlencoded({ extended: true }));
+  }
+}

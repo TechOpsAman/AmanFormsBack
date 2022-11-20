@@ -10,7 +10,9 @@
 		"project": "./tsconfig.json"
 	},
 	"rules": {
-		"comma-dangle": "off",
+		"indent": 0,
+		"@typescript-eslint/indent": "off",
+		"comma-dangle": 0,
 		"@typescript-eslint/comma-dangle" : "off",
 		"quotes": "off",
 		"no-console": "off",
