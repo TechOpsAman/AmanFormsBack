@@ -1,4 +1,3 @@
-// Answers
 export interface ISurveyAnswers {
   surveyId: string;
   userId: string;

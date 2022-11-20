@@ -1,4 +1,3 @@
-// Question
 export interface ISurveyQuestions {
   id?: string;
   creatorId: string; //add in joi and stuff

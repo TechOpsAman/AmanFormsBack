@@ -4,15 +4,26 @@ import { ISurveyQuestionsAndAnswers } from '../interfaces/compositor.interface';
 import { ISurveyQuestions } from '../interfaces/questions.interface';
 import { ISurveyAnswers } from '../interfaces/answers.interface';
 import {
-  SurveyAnswersNotFound,
-  SurveyQuestionsNotFound,
+  SurveyAnswersNotFoundError,
+  SurveyQuestionsNotFoundError,
 } from '../utils/errors/compositor'; // TODO: check if survey answers and questions interfaces are needed for functions.
 import { config } from '../config';
 
 export class CompositorManager {
-  static async deleteSurvey(surveyId: string): Promise<ISurvey> {
-    // פה אני מחזיר את כל התשובות והשאלות של שאלון מסויים או רק את השאלות?
-    // return AnswerRepository.create(newSurvey);
+  static async deleteSurvey(surveyId: string): Promise<ISurveyQuestions> {
+    const survey: ISurveyQuestions | null | undefined = await axios.delete(
+      `${config.questionsService.questionsCrudConnectionString}/api/questions/deleteSurveyById`,
+      { params: { surveyId } }
+    );
+
+    if (!survey) new SurveyQuestionsNotFoundError();
+
+    await axios.delete(
+      `${config.answersService.answersCrudConnectionString}/api/answers/deleteSurveyById`,
+      { params: { surveyId } }
+    );
+
+    return survey as ISurveyQuestions;
   }
 
   static async getSurveyResults(
@@ -21,14 +32,14 @@ export class CompositorManager {
     const surveyAnswers = (
       await axios.get(
         `${config.answersService.answersCrudConnectionString}/api/answers/find`,
-        { params: { surveyId } } // fix path
+        { params: { surveyId } }
       )
     ).data;
 
     const surveyQuestions = (
       await axios.get(
         `${config.questionsService.questionsCrudConnectionString}/api/questions/getSurveyById`,
-        { params: { surveyId } } // fix path
+        { params: { surveyId } }
       )
     ).data;
 
@@ -38,9 +49,9 @@ export class CompositorManager {
     };
 
     const error: Error | null = !surveyQuestions
-      ? new SurveyQuestionsNotFound()
+      ? new SurveyQuestionsNotFoundError()
       : !surveyAnswers
-      ? new SurveyAnswersNotFound()
+      ? new SurveyAnswersNotFoundError()
       : null;
 
     if (error) throw error;
