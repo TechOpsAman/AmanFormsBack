@@ -13,7 +13,14 @@ export class AnswerManager {
     if (survey.length !== 0) {
       return survey;
     } else {
-      throw new SurveyNotFound;
+      throw new SurveyNotFound();
     }
+  }
+
+  static async deleteSurveyById(surveyId: string): Promise<ISurvey | null> {
+    const survey = await AnswerRepository.deleteSurveyById(surveyId);
+
+    if (!survey) throw new SurveyNotFound();
+    return survey;
   }
 }

@@ -6,10 +6,15 @@ export class AnswerController {
   static async create(req: Request, res: Response): Promise<void> {
     const newSurvey = req.body;
     res.json(await AnswerManager.create(newSurvey));
-  } 
+  }
 
   static async showSurveyById(req: Request, res: Response): Promise<void> {
-    const { surveyId } = req.query as any;
-    res.json(await AnswerManager.showSurveyById(surveyId));
+    res.json(await AnswerManager.showSurveyById(req.query.surveyId as string));
+  }
+
+  static async deleteSurveyById(req: Request, res: Response): Promise<void> {
+    res.json(
+      await AnswerManager.deleteSurveyById(req.query.surveyId as string),
+    );
   }
 }
