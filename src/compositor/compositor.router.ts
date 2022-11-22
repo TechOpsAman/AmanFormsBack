@@ -10,12 +10,12 @@ import {
 const compositorRouter: Router = Router();
 
 compositorRouter.delete(
-  '/deleteSurvey/:id/id',
+  '/deleteSurvey',
   ValidateRequest(deleteSurveySchema),
   wrapAsync(CompositorController.deleteSurvey)
 );
 compositorRouter.get(
-  '/getSurveyResults/:id/id',
+  '/getSurveyResults',
   ValidateRequest(getSurveyResultsSchema),
   wrapAsync(CompositorController.getSurveyResults)
 );

@@ -38,6 +38,11 @@ export enum QuestionType {
 }
 
 export interface ISurveyQuestionsAndAnswers {
+  // TODO: change type in order
+  // to get only info in ONE OBJECT without duplicated fields (survey id
+  // and content (in content it's not the same information so the key field
+  // name needs to be different (for example:
+  // questionsSurveyContent and answersSurveyContent)))!!!
   answers: ISurveyAnswers;
   questions: ISurveyQuestions;
 }

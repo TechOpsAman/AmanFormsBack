@@ -15,7 +15,7 @@ export class CompositorManager {
   static async deleteSurvey(
     surveyId: string
   ): Promise<ISurveyQuestions | null> {
-    const survey = QuestionsService.deleteQuestion({}, surveyId);
+    const survey = await QuestionsService.deleteQuestion({}, surveyId);
 
     if (!survey) new SurveyQuestionsNotFoundError();
 
@@ -28,7 +28,7 @@ export class CompositorManager {
   static async getSurveyResults(
     surveyId: string
   ): Promise<ISurveyQuestionsAndAnswers> {
-    const surveyAnswers = await AnswersService.getAnswer({}, surveyId);
+    const surveyAnswers = await AnswersService.getAnswer({}, surveyId); // TODO: CHECK IF surveyAnswers ISNT NULL (IF AWAIT WORKED)
     const surveyQuestions = await QuestionsService.getQuestion({}, surveyId);
 
     const error: Error | null = !surveyQuestions

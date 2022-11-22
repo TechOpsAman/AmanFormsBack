@@ -11,8 +11,8 @@ export default class QuestionsService {
   ): Promise<ISurveyQuestions | null> {
     return axios
       .get(
-        `${config.questionsService.questionsCrudConnectionString}/api/questions/getSurveyById/${surveyId}`,
-        headers
+        `${config.questionsService.questionsCrudConnectionString}/api/questions/getSurveyById`,
+        { params: { id: surveyId }, headers }
       )
       .then((res) => res.data);
   }
@@ -23,8 +23,8 @@ export default class QuestionsService {
   ): Promise<ISurveyQuestions | null> {
     return axios
       .delete(
-        `${config.questionsService.questionsCrudConnectionString}/api/questions/deleteSurveyById/${surveyId}`,
-        headers
+        `${config.questionsService.questionsCrudConnectionString}/api/questions/deleteSurveyById`,
+        { params: { id: surveyId }, headers }
       )
       .then((res) => res.data);
   }
