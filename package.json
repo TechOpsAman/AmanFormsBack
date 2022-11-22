@@ -5,9 +5,17 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "tsc && node ./dist/src/index.js",
-    "test": "tsc && jest ./dist/index.test.js",
-    "lint": "eslint -c .eslintrc.json --no-error-on-unmatched-pattern ./src/**/*"
+    "watch": "tsc --watch",
+    "dev": "ts-node src/index.ts",
+    "start": "ts-node src/index.ts",
+    "install:prod": "npm install --production",
+    "lint": "eslint -c .eslintrc.json --no-error-on-unmatched-pattern ./src/**/*",
+    "lint:fix": "eslint -c .eslintrc.json --no-error-on-unmatched-pattern ./src/**/* --fix",
+    "test": "tsc && jest --maxWorkers=1 --testPathPattern .spec.ts$",
+    "test:unit": "tsc && jest --testPathPattern .manager.spec.ts$ .repository.spec.ts$ .utils.spec.ts$",
+    "test:integration": "tsc && jest --maxWorkers=1 --testPathPattern .router.spec.ts$",
+    "coverage": "tsc && jest --coverage",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
@@ -27,7 +35,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "env-var": "^7.1.1",
-    "express": "^4.17.3",
+    "express": "^4.18.2",
     "helmet": "^5.0.2",
     "http": "^0.0.1-security",
     "http-proxy-middleware": "^2.0.6",
@@ -41,7 +49,7 @@
     "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
-    "@types/express": "^4.17.13",
+    "@types/express": "^4.17.14",
     "@types/hapi__joi": "^17.1.8",
     "@types/helmet": "0.0.48",
     "@types/jest": "^27.4.0",

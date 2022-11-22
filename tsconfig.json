@@ -19,5 +19,6 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
+    "skipLibCheck": true,
   },
 }
