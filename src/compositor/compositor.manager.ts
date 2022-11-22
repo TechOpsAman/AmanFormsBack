@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from 'axios';
-import { ISurveyQuestionsAndAnswers } from '../interfaces/compositor.interface';
-import { ISurveyQuestions } from '../interfaces/questions.interface';
-import { ISurveyAnswers } from '../interfaces/answers.interface';
+import { ISurveyQuestionsAndAnswers } from './interfaces/compositor.interface';
+import {
+  ISurveyQuestions,
+  ISurveyAnswers,
+} from './interfaces/compositor.interface';
 import {
   SurveyAnswersNotFoundError,
   SurveyQuestionsNotFoundError,

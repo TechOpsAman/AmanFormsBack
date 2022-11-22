@@ -1,6 +1,17 @@
+export interface ISurveyAnswers {
+  surveyId: string;
+  userId: string;
+  content: Array<ISection>;
+}
+
+export interface ISection {
+  questionId: string;
+  answers: Array<string>;
+}
+
 export interface ISurveyQuestions {
   id?: string;
-  creatorId: string; //add in joi and stuff
+  creatorId: string;
   surveyName: string;
   content: Array<IQuestion>;
 }
@@ -24,4 +35,9 @@ export enum QuestionType {
   checkbox = 'checkbox',
   select = 'select',
   title = 'title',
+}
+
+export interface ISurveyQuestionsAndAnswers {
+  answers: ISurveyAnswers;
+  questions: ISurveyQuestions;
 }
