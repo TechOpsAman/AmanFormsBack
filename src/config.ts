@@ -11,7 +11,7 @@ export const config = {
   db: {
     connectionString: env
       .get('DB_CONNECTION_URL')
-      .default('mongodb://localhost:27017')
+      .default('mongodb://127.0.0.1:27017')
       .asString(),
     dbName: env.get('compositor_DB_NAME').default('compositor').asString(),
   },
