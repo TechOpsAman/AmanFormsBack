@@ -4,9 +4,9 @@ services:
     build: ./
     environment: 
         DB_CONNECTION_URL: mongodb://mongo:27017
-        APPLICATION_PORT: 3000
+        APPLICATION_PORT: 3002
     ports:
-      - "3000:3000"
+      - "3002:3002"
     depends_on: 
       - mongo
   mongo:
