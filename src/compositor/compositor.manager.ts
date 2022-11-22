@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import axios from 'axios';
 import { ISurveyQuestionsAndAnswers } from './interfaces/compositor.interface';
 import {
   ISurveyQuestions,
@@ -8,47 +7,29 @@ import {
 import {
   SurveyAnswersNotFoundError,
   SurveyQuestionsNotFoundError,
-} from '../utils/errors/compositor'; // TODO: check if survey answers and questions interfaces are needed for functions.
-import { config } from '../config';
+} from '../utils/errors/compositor';
+import AnswersService from '../utils/services/answers.service';
+import QuestionsService from '../utils/services/questions.service';
 
 export class CompositorManager {
-  static async deleteSurvey(surveyId: string): Promise<ISurveyQuestions> {
-    const survey: ISurveyQuestions | null | undefined = await axios.delete(
-      `${config.questionsService.questionsCrudConnectionString}/api/questions/deleteSurveyById`,
-      { params: { surveyId } }
-    );
+  static async deleteSurvey(
+    surveyId: string
+  ): Promise<ISurveyQuestions | null> {
+    const survey = QuestionsService.deleteQuestion({}, surveyId);
 
     if (!survey) new SurveyQuestionsNotFoundError();
 
-    await axios.delete(
-      `${config.answersService.answersCrudConnectionString}/api/answers/deleteSurveyById`,
-      { params: { surveyId } }
-    );
+    await AnswersService.deleteAnswer({}, surveyId);
 
-    return survey as ISurveyQuestions;
+    if (!survey) throw new Error('error'); // TODO: change to real error!!!
+    return survey;
   }
 
   static async getSurveyResults(
     surveyId: string
   ): Promise<ISurveyQuestionsAndAnswers> {
-    const surveyAnswers = (
-      await axios.get(
-        `${config.answersService.answersCrudConnectionString}/api/answers/find`,
-        { params: { surveyId } }
-      )
-    ).data;
-
-    const surveyQuestions = (
-      await axios.get(
-        `${config.questionsService.questionsCrudConnectionString}/api/questions/getSurveyById`,
-        { params: { surveyId } }
-      )
-    ).data;
-
-    const surveyQuestionsAndAnswers: ISurveyQuestionsAndAnswers = {
-      answers: surveyAnswers as ISurveyAnswers,
-      questions: surveyQuestions as ISurveyQuestions,
-    };
+    const surveyAnswers = await AnswersService.getAnswer({}, surveyId);
+    const surveyQuestions = await QuestionsService.getQuestion({}, surveyId);
 
     const error: Error | null = !surveyQuestions
       ? new SurveyQuestionsNotFoundError()
@@ -57,6 +38,11 @@ export class CompositorManager {
       : null;
 
     if (error) throw error;
+
+    const surveyQuestionsAndAnswers: ISurveyQuestionsAndAnswers = {
+      answers: surveyAnswers as ISurveyAnswers,
+      questions: surveyQuestions as ISurveyQuestions,
+    };
 
     return surveyQuestionsAndAnswers;
   }

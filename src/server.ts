@@ -26,23 +26,7 @@ export class Server {
   private constructor() {
     this.app = express();
     this.configurationMiddleware();
-    this.app.use('/api/compositor', AppRouter);
-    // this.app.use(
-    //   '/api/questions',
-    //   createProxyMiddleware({
-    //     target: config.questionsService.questionsCrudConnectionString,
-    //     changeOrigin: true,
-    //   })
-    // );
-
-    // this.app.use(
-    //   '/api/answers',
-    //   createProxyMiddleware({
-    //     target: config.answersService.answersCrudConnectionString,
-    //     changeOrigin: true,
-    //     secure: false,
-    //   })
-    // );
+    this.app.use(AppRouter);
     this.app.use(errorMiddleware);
     this.server = this.app.listen(config.server.port, () => {
       logger.log(

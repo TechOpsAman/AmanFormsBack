@@ -3,12 +3,10 @@ import { CompositorManager } from './compositor.manager';
 
 export class CompositorController {
   static async deleteSurvey(req: Request, res: Response): Promise<void> {
-    const { surveyId } = req.query as any; // Why not string?
-    res.json(await CompositorManager.deleteSurvey(surveyId));
+    res.json(await CompositorManager.deleteSurvey(req.params.surveyId));
   }
 
   static async getSurveyResults(req: Request, res: Response): Promise<void> {
-    const { surveyId } = req.query as any;
-    res.json(await CompositorManager.getSurveyResults(surveyId));
+    res.json(await CompositorManager.getSurveyResults(req.params.surveyId));
   }
 }

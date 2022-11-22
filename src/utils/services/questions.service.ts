@@ -1,13 +1,31 @@
 import axios from 'axios';
 import { config } from '../../config';
-// import { Task } from '../../compositor/compositor.interface';
+import { ISurveyQuestions } from '../../compositor/interfaces/compositor.interface';
 
-export default class AnswersService {
+export default class QuestionsService {
   static api = `${config.questionsService.questionsCrudConnectionString}/api/questions`;
 
-  //   static async create(headers: any, body: Record<string, any>): Promise<Task> {
-  //     return axios
-  //       .post(`${TaskService.api}`, body, headers)
-  //       .then((res) => res.data);
-  //   }
+  static async getQuestion(
+    headers: any,
+    surveyId: string
+  ): Promise<ISurveyQuestions | null> {
+    return axios
+      .get(
+        `${config.questionsService.questionsCrudConnectionString}/api/questions/getSurveyById/${surveyId}`,
+        headers
+      )
+      .then((res) => res.data);
+  }
+
+  static async deleteQuestion(
+    headers: any,
+    surveyId: string
+  ): Promise<ISurveyQuestions | null> {
+    return axios
+      .delete(
+        `${config.questionsService.questionsCrudConnectionString}/api/questions/deleteSurveyById/${surveyId}`,
+        headers
+      )
+      .then((res) => res.data);
+  }
 }
