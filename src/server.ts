@@ -26,7 +26,7 @@ export class Server {
   private constructor() {
     this.app = express();
     this.configurationMiddleware();
-    this.app.use(AppRouter);
+    this.app.use('/api/compositor', AppRouter);
     this.app.use(
       '/api/questions',
       createProxyMiddleware({
