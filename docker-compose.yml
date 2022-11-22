@@ -1,11 +1,11 @@
 version: '3'
 
 services:
-  # mongo: 
-  #     image: mongo
-  #     ports:
-  #       - 27017:27017
-  #     restart: always
+  mongo: 
+      image: mongo
+      ports:
+        - 27017:27017
+      restart: always
   # questions-service:
   #     depends_on:
   #       - mongo
@@ -27,7 +27,8 @@ services:
   #       DB_CONNECTION_URL: mongodb://mongo:27017
   #       APPLICATION_PORT: 3001
   compositor:
-      # depends_on: 
+      depends_on: 
+      - mongo
       #   - questions-service 
       #   - ansewrs-service
       image: compositor
