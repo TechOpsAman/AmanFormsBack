@@ -39,9 +39,19 @@ export class CompositorManager {
 
     if (error) throw error;
 
+    const neededSurveyQuestionsFields: Omit<ISurveyQuestions, 'id'> = (({
+      creatorId,
+      surveyName,
+      questionsContent,
+    }): Omit<ISurveyQuestions, 'id'> => ({
+      creatorId,
+      surveyName,
+      questionsContent,
+    }))(surveyQuestions!);
+
     const surveyQuestionsAndAnswers: ISurveyQuestionsAndAnswers = {
-      answers: surveyAnswers as ISurveyAnswers,
-      questions: surveyQuestions as ISurveyQuestions,
+      ...(surveyAnswers as ISurveyAnswers),
+      ...neededSurveyQuestionsFields,
     };
 
     return surveyQuestionsAndAnswers;

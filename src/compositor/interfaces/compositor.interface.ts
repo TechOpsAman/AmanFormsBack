@@ -1,7 +1,7 @@
 export interface ISurveyAnswers {
   surveyId: string;
   userId: string;
-  content: Array<ISection>;
+  answersContent: Array<ISection>;
 }
 
 export interface ISection {
@@ -13,7 +13,7 @@ export interface ISurveyQuestions {
   id?: string;
   creatorId: string;
   surveyName: string;
-  content: Array<IQuestion>;
+  questionsContent: Array<IQuestion>;
 }
 
 export interface IQuestion {
@@ -37,14 +37,5 @@ export enum QuestionType {
   title = 'title',
 }
 
-export interface ISurveyQuestionsAndAnswers {
-  // TODO: change type in order
-  // to get only info in ONE OBJECT without duplicated fields (survey id
-  // and content (in content it's not the same information so the key field
-  // name needs to be different (for example:
-  // questionsSurveyContent and answersSurveyContent)))!!!
-  answers: ISurveyAnswers;
-  questions: ISurveyQuestions;
-}
-
-// check
+export type ISurveyQuestionsAndAnswers = ISurveyAnswers &
+  Omit<ISurveyQuestions, 'id'>;
