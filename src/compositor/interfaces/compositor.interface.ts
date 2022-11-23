@@ -1,19 +1,17 @@
+export interface ISection {
+  questionId: string;
+  answers: Array<string>;
+}
+
 export interface ISurveyAnswers {
   surveyId: string;
   userId: string;
   answersContent: Array<ISection>;
 }
 
-export interface ISection {
-  questionId: string;
-  answers: Array<string>;
-}
-
-export interface ISurveyQuestions {
+export interface IAnswer {
   id?: string;
-  creatorId: string;
-  surveyName: string;
-  questionsContent: Array<IQuestion>;
+  answer: string;
 }
 
 export interface IQuestion {
@@ -23,9 +21,11 @@ export interface IQuestion {
   answers?: Array<IAnswer>;
 }
 
-export interface IAnswer {
+export interface ISurveyQuestions {
   id?: string;
-  answer: string;
+  creatorId: string;
+  surveyName: string;
+  questionsContent: Array<IQuestion>;
 }
 
 export enum QuestionType {
