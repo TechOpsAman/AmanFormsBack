@@ -9,7 +9,7 @@ export default class AnswersService {
     headers: any,
     surveyId: string
   ): Promise<ISurveyAnswers | null> {
-    return axios
+    const answer = axios
       .get(
         `${config.questionsService.questionsCrudConnectionString}/api/answers/find`,
         {
@@ -20,17 +20,25 @@ export default class AnswersService {
         }
       )
       .then((res) => res.data);
+
+    console.log(answer);
+
+    return answer;
   }
 
   static async deleteAnswer(
     headers: any,
     surveyId: string
   ): Promise<ISurveyAnswers | null> {
-    return axios
+    const answer = axios
       .delete(
         `${config.questionsService.questionsCrudConnectionString}/api/answers/deleteSurveyById`,
         { params: { surveyId: surveyId }, headers }
       )
       .then((res) => res.data);
+
+    console.log(answer);
+
+    return answer;
   }
 }
