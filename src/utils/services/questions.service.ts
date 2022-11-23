@@ -9,31 +9,23 @@ export default class QuestionsService {
     headers: any,
     surveyId: string
   ): Promise<ISurveyQuestions | null> {
-    const question = axios
+    return axios
       .get(
         `${config.questionsService.questionsCrudConnectionString}/api/questions/getSurveyById`,
         { params: { id: surveyId }, headers }
       )
       .then((res) => res.data);
-
-    console.log(question);
-
-    return question;
   }
 
   static async deleteQuestion(
     headers: any,
     surveyId: string
   ): Promise<ISurveyQuestions | null> {
-    const question = axios
+    return axios
       .delete(
         `${config.questionsService.questionsCrudConnectionString}/api/questions/deleteSurveyById`,
         { params: { id: surveyId }, headers }
       )
       .then((res) => res.data);
-
-    console.log(question);
-
-    return question;
   }
 }
