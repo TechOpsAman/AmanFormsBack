@@ -13,15 +13,19 @@ import QuestionsService from '../utils/services/questions.service';
 export class CompositorManager {
   static async deleteSurvey(
     surveyId: string
-  ): Promise<ISurveyQuestions | null> {
-    const survey = await QuestionsService.deleteQuestionSurvey({}, surveyId);
+  ): Promise<(ISurveyQuestions | ISurveyAnswers)[]> {
+    const surveyQuestions = await QuestionsService.deleteQuestionSurvey(
+      {},
+      surveyId
+    );
 
-    if (!survey) new SurveyQuestionsNotFoundError();
+    if (!surveyQuestions) throw new SurveyQuestionsNotFoundError();
 
-    await AnswersService.deleteAnswer({}, surveyId);
+    const surveyAnswers = await AnswersService.deleteAnswer({}, surveyId);
 
-    if (!survey) throw new Error('error'); // TODO: change to real error!!!
-    return survey;
+    if (!surveyAnswers) throw new SurveyAnswersNotFoundError();
+
+    return [surveyQuestions, surveyAnswers];
   }
 
   static async getSurveyResults(
@@ -32,8 +36,7 @@ export class CompositorManager {
       {},
       surveyId
     );
-
-    if (!surveyQuestions) throw new SurveyAnswersNotFoundError();
+    if (!surveyQuestions) throw new SurveyQuestionsNotFoundError();
     if (!surveyAnswers) throw new SurveyAnswersNotFoundError();
 
     return [surveyQuestions, surveyAnswers];

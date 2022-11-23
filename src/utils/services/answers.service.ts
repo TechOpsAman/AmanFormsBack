@@ -9,21 +9,33 @@ export default class AnswersService {
     headers: any,
     surveyId: string
   ): Promise<ISurveyAnswers | null> {
-    return axios
+    const surveyAnswers = axios
       .get(`${AnswersService.api}/find?surveyId=${surveyId}`, {
         headers,
       })
-      .then((res) => res.data);
+      .then((res) => res.data)
+      .catch((err) => {
+        console.log(err);
+        return null;
+      });
+
+    return surveyAnswers;
   }
 
   static async deleteAnswer(
     headers: any,
     surveyId: string
   ): Promise<ISurveyAnswers | null> {
-    return axios
+    const surveyAnswers = axios
       .delete(`${AnswersService.api}/delete?surveyId=${surveyId}`, {
         headers,
       })
-      .then((res) => res.data);
+      .then((res) => res.data)
+      .catch((err) => {
+        console.log(err);
+        return null;
+      });
+
+    return surveyAnswers;
   }
 }
