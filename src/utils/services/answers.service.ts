@@ -10,15 +10,9 @@ export default class AnswersService {
     surveyId: string
   ): Promise<ISurveyAnswers | null> {
     return axios
-      .get(
-        `${config.questionsService.questionsCrudConnectionString}/api/answers/find`,
-        {
-          params: {
-            surveyId: surveyId,
-          },
-          headers,
-        }
-      )
+      .get(`${AnswersService.api}/find?surveyId=${surveyId}`, {
+        headers,
+      })
       .then((res) => res.data);
   }
 
@@ -27,10 +21,9 @@ export default class AnswersService {
     surveyId: string
   ): Promise<ISurveyAnswers | null> {
     return axios
-      .delete(
-        `${config.questionsService.questionsCrudConnectionString}/api/answers/deleteSurveyById`,
-        { params: { surveyId: surveyId }, headers }
-      )
+      .delete(`${AnswersService.api}/delete?surveyId=${surveyId}`, {
+        headers,
+      })
       .then((res) => res.data);
   }
 }

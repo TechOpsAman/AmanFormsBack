@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ISurveyQuestionsAndAnswers } from './interfaces/compositor.interface';
 import {
   ISurveyQuestions,
   ISurveyAnswers,
@@ -15,7 +14,7 @@ export class CompositorManager {
   static async deleteSurvey(
     surveyId: string
   ): Promise<ISurveyQuestions | null> {
-    const survey = await QuestionsService.deleteQuestion({}, surveyId);
+    const survey = await QuestionsService.deleteQuestionSurvey({}, surveyId);
 
     if (!survey) new SurveyQuestionsNotFoundError();
 
@@ -27,33 +26,16 @@ export class CompositorManager {
 
   static async getSurveyResults(
     surveyId: string
-  ): Promise<ISurveyQuestionsAndAnswers> {
+  ): Promise<(ISurveyQuestions | ISurveyAnswers)[]> {
     const surveyAnswers = await AnswersService.getAnswer({}, surveyId); // TODO: CHECK IF surveyAnswers ISNT NULL (IF AWAIT WORKED)
-    const surveyQuestions = await QuestionsService.getQuestion({}, surveyId);
+    const surveyQuestions = await QuestionsService.getQuestionSurvey(
+      {},
+      surveyId
+    );
 
-    const error: Error | null = !surveyQuestions
-      ? new SurveyQuestionsNotFoundError()
-      : !surveyAnswers
-      ? new SurveyAnswersNotFoundError()
-      : null;
+    if (!surveyQuestions) throw new SurveyAnswersNotFoundError();
+    if (!surveyAnswers) throw new SurveyAnswersNotFoundError();
 
-    if (error) throw error;
-
-    const neededSurveyQuestionsFields: Omit<ISurveyQuestions, 'id'> = (({
-      creatorId,
-      surveyName,
-      questionsContent,
-    }): Omit<ISurveyQuestions, 'id'> => ({
-      creatorId,
-      surveyName,
-      questionsContent,
-    }))(surveyQuestions!);
-
-    const surveyQuestionsAndAnswers: ISurveyQuestionsAndAnswers = {
-      ...(surveyAnswers as ISurveyAnswers),
-      ...neededSurveyQuestionsFields,
-    };
-
-    return surveyQuestionsAndAnswers;
+    return [surveyQuestions, surveyAnswers];
   }
 }

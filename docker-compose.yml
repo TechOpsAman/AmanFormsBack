@@ -16,6 +16,7 @@ services:
       - 3002:3002
     environment:
       DB_CONNECTION_URL: mongodb://mongo:27017
+      QUESTIONS_CRUD_CONNECTION_URL: http://questions-service:3002
       APPLICATION_PORT: 3002
     
   ansewrs-service:
@@ -28,6 +29,7 @@ services:
     environment:
       DB_CONNECTION_URL: mongodb://mongo:27017
       APPLICATION_PORT: 3001
+      QUESTIONS_CRUD_CONNECTION_URL: http://answers-service:3001
 
   compositor:
     depends_on:

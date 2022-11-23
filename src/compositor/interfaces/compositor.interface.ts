@@ -36,6 +36,3 @@ export enum QuestionType {
   select = 'select',
   title = 'title',
 }
-
-export type ISurveyQuestionsAndAnswers = ISurveyAnswers &
-  Omit<ISurveyQuestions, 'id'>;

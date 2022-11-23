@@ -18,7 +18,7 @@ export const config = {
   answersService: {
     answersCrudConnectionString: env
       .get('ANSWERS_CRUD_CONNECTION_URL')
-      .default('http://localhost:3001')
+      .default('http://ansewrs-service:3001')
       .asString(),
     serviceName: env
       .get('ANSWERS_SERVICE_NAME')
@@ -28,7 +28,7 @@ export const config = {
   questionsService: {
     questionsCrudConnectionString: env
       .get('QUESTIONS_CRUD_CONNECTION_URL')
-      .default('http://localhost:3002')
+      .default('http://questions-service:3002')
       .asString(),
     serviceName: env
       .get('QUESTIONS_SERVICE_NAME')

@@ -5,27 +5,25 @@ import { ISurveyQuestions } from '../../compositor/interfaces/compositor.interfa
 export default class QuestionsService {
   static api = `${config.questionsService.questionsCrudConnectionString}/api/questions`;
 
-  static async getQuestion(
+  static async getQuestionSurvey(
     headers: any,
     surveyId: string
   ): Promise<ISurveyQuestions | null> {
     return axios
-      .get(
-        `${config.questionsService.questionsCrudConnectionString}/api/questions/getSurveyById`,
-        { params: { id: surveyId }, headers }
-      )
+      .get(`${QuestionsService.api}/getSurveyById?id=${surveyId}`, {
+        headers,
+      })
       .then((res) => res.data);
   }
 
-  static async deleteQuestion(
+  static async deleteQuestionSurvey(
     headers: any,
     surveyId: string
   ): Promise<ISurveyQuestions | null> {
     return axios
-      .delete(
-        `${config.questionsService.questionsCrudConnectionString}/api/questions/deleteSurveyById`,
-        { params: { id: surveyId }, headers }
-      )
+      .delete(`${QuestionsService.api}/deleteSurveyById?id=${surveyId}`, {
+        headers,
+      })
       .then((res) => res.data);
   }
 }
