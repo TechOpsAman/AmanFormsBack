@@ -31,7 +31,7 @@ export class CompositorManager {
   static async getSurveyResults(
     surveyId: string
   ): Promise<(ISurveyQuestions | ISurveyAnswers)[]> {
-    const surveyAnswers = await AnswersService.getAnswer({}, surveyId); // TODO: CHECK IF surveyAnswers ISNT NULL (IF AWAIT WORKED)
+    const surveyAnswers = await AnswersService.getAnswer({}, surveyId);
     const surveyQuestions = await QuestionsService.getQuestionSurvey(
       {},
       surveyId
