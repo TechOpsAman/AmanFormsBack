@@ -8,6 +8,7 @@ const iSection = Joi.object({
 const surveySchema = Joi.object({
   surveyId: Joi.string().length(24).required(),
   userId: Joi.string().hex().length(24).required(),
+  required: Joi.boolean().required(),
   content: Joi.array().items(iSection).required(),
 });
 

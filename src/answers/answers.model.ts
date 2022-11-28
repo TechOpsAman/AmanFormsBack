@@ -31,6 +31,10 @@ const answerSchema: mongoose.Schema = new mongoose.Schema({
     type: mongoose.SchemaTypes.String,
     required: true,
   },
+  required: {
+    type: mongoose.SchemaTypes.Boolean,
+    required: true,
+  }, 
   content: {
     type: [sectionSchema],
     required: true,

@@ -1,6 +1,7 @@
 export const validSurvey = {
     surveyId: '123412341234123412341234',
     userId: '123456123456123456123456',
+    required: true,
     content: [
         {
             questionId: '111111111111111111111111',
