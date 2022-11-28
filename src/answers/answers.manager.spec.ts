@@ -6,12 +6,8 @@ import {
   validSurveyId,
   validUserId,
   validContent1,
-  //validContent2,
   invalidSurveyId,
-  //invalidUserId,
-  //invalidContent,
 } from '../utils/mocks';
-//import { iSurvey } from './answers.interface';
 import { SurveyNotFound } from '../utils/errors/answer';
 
 const {
@@ -44,44 +40,7 @@ describe('call Manager Module', () => {
     });
   });
 
-  // describe('Post a survey', () => {
-  //   test('Should not create a survey', async () => {
-  //     const createdSurvey = await AnswerManager.create(
-  // {
-  //   "surveyId": invalidSurveyId,
-  //   "userId": validUserId,
-  //   "content": validContent1,
-  // }
-  //     );
-  //     if (!createdSurvey.surveyId) {
-  //       fail();
-  //     }
-  //     const survey = await AnswerManager.showSurveyById(createdSurvey.surveyId);
-  //     expect(createdSurvey.surveyId).toEqual(survey[0]?.surveyId);
-  //   });
-  // });
-
-  // test('Should throw survey not found error', async () => {
-  //   const createdSurvey = await QuestionManager.createSurvey(
-  //     validSurveyName1,
-  //     validCreatorId,
-  //     validContent1 as Question[],
-  //   );
-
-  //   if (!createdSurvey.id) {
-  //     fail();
-  //   }
-  //   try {
-  //     await QuestionManager.updateSurvey(
-  //       invalidSurveyId,
-  //       '',
-  //       validContent2 as Question[],
-  //     );
-  //   } catch (err) {
-  //     expect(err).toBeInstanceOf(surveyNotFoundError);
-  //   }
-  // });
-
+  
   describe('get a survey by id', () => {
     test('Should get a survey', async () => {
       const createdSurvey = await AnswerManager.create({

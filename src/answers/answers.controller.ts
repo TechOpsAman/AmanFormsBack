@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-//import { iSurvey, iSection } from './answers.interface';
 import { AnswerManager } from './answers.manager';
 
 export class AnswerController {

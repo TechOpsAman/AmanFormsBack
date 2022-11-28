@@ -64,14 +64,14 @@ const {
         });
       });
 
-      describe('#Get /api/answers/find', () => {
+      describe('#Get /api/answers/getSurveysById', () => {
         test('Should return the survey', async () => {
           const survey = await AnswerManager.create(
             validSurvey,
           );
 
           const response = await request(server.app).get(
-            `${basePath}/find?surveyId=${survey.surveyId}`,
+            `${basePath}/getSurveysById?surveyId=${survey.surveyId}`,
           );
           console.log(response.body);
     
@@ -84,7 +84,7 @@ const {
         test('Should throw ValidationError', async () => {
           try {
             await request(server.app).post(
-              `${basePath}/find?surveyId=${invalidSurveyId}`,
+              `${basePath}/getSurveysById?surveyId=${invalidSurveyId}`,
             );
           } catch (err) {
             expect(err).toBeInstanceOf(ValidationError);

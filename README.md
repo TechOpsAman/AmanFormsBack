@@ -29,7 +29,7 @@ docker-compose up --build -d
 | METHOD | ENDPOINT                                                         | DESCRIPTION                                       |
 | ------ | :----------------------------------------------------------------| :----------------------------------------------   |
 | Post   |                                                                  | create the survey answer                          |
-| Get    |  find                                                            | get the survey answer's information               |
+| Get    |  getSurveysById                                                  | get the survey answer's information               |
 
 **---------------------------------------------------------------------------------------------------------------------------------**
 
@@ -66,7 +66,7 @@ get the survey question's answers
 
 #### example
 ```typescript
-/find?surveyId=634e8da60c68790b062e0cfa
+/getSurveysById?surveyId=634e8da60c68790b062e0cfa
 ```
 **---------------------------------------------------------------------------------------------------------------------------------**
 Footer

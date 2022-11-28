@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { AnswerRepository } from './answers.repository';
 import { ISurvey } from './answers.interface';
 import { SurveyNotFound } from '../utils/errors/answer';

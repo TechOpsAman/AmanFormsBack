@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-underscore-dangle */
 import * as mongoose from 'mongoose';
 import { ISurvey } from './answers.interface';
 
@@ -15,7 +13,6 @@ const sectionSchema: mongoose.Schema = new mongoose.Schema({
 }, {
   toJSON: {
     virtuals: true,
-    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
     transform(_doc, ret) {
       delete ret._id;
     },
@@ -41,7 +38,6 @@ const answerSchema: mongoose.Schema = new mongoose.Schema({
 }, {
   toJSON: {
     virtuals: true,
-    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
     transform(_doc, ret) {
       delete ret._id;
     },
