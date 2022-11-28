@@ -2,7 +2,6 @@
   "compilerOptions": {
     "target": "es2020",
     "module": "commonjs",
-    // "allowJs": false,
     "sourceMap": true,
     "removeComments": true,
     "strict": true,
