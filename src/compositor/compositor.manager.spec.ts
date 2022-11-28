@@ -1,20 +1,18 @@
 import * as mongoose from 'mongoose';
-import axios from 'axios';
 import { config } from '../config';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { CompositorManager } from './compositor.manager';
 import {
   ISurveyAnswers,
   ISurveyQuestions,
-  IQuestion,
-  ISection,
 } from './interfaces/compositor.interface';
 import { testsValues } from '../utils/mocks';
 import {
   SurveyQuestionsNotFoundError,
   SurveyAnswersNotFoundError,
 } from '../utils/errors/compositor';
-import CompositorService from '../utils/services/compositor.service';
+import QuestionsService from '../utils/services/questions.service';
+import AnswersService from '../utils/services/answers.service';
 
 const {
   db: { connectionString, dbName },
@@ -37,26 +35,31 @@ describe('Compositor Manager Module', () => {
 
   describe('Delete a survey', () => {
     test('Should delete survey`s questions and answers', async () => {
-      // const createdSurvey = await CompositorService.createSurvey(
-      //   {},
-      //   testsValues.questionsValues.validSurveyName1,
-      //   testsValues.questionsValues.validCreatorId,
-      //   testsValues.questionsValues.validContent1 as IQuestion[],
-      //   {
-      //     answersContent: testsValues.answersValues.validSurvey
-      //       .content as Array<ISection>,
-      //     userId: testsValues.answersValues.validSurvey.userId as string,
-      //   } as Omit<ISurveyAnswers, 'surveyId'>
-      // );
+      const createdSurveyQuestions =
+        await QuestionsService.CreateQuestionSurvey(
+          {},
+          testsValues.questionsValues.validSurveyName1,
+          testsValues.questionsValues.validCreatorId,
+          testsValues.questionsValues.validContent1
+        );
 
-      if (!createdSurvey) {
+      const answersSurvey: unknown = testsValues.answersValues.validSurvey;
+      (answersSurvey as ISurveyAnswers).surveyId =
+        createdSurveyQuestions?.id as string;
+
+      const createdSurveyAnswers = await AnswersService.CreateAnswersSurvey(
+        {},
+        answersSurvey as ISurveyAnswers
+      );
+
+      if (!createdSurveyQuestions || !createdSurveyAnswers) {
         fail();
       }
 
       const deletedSurvey = await CompositorManager.deleteSurvey(
-        (createdSurvey[0] as ISurveyQuestions).id!
+        createdSurveyQuestions.id as string
       );
-      expect((createdSurvey[0] as ISurveyQuestions).id).toEqual(
+      expect(createdSurveyQuestions.id as string).toEqual(
         (deletedSurvey[0] as ISurveyQuestions).id
       );
     });
@@ -76,26 +79,31 @@ describe('Compositor Manager Module', () => {
 
   describe('Get survey results', () => {
     test('Should get survey`s questions and answers', async () => {
-      // const createdSurvey = await CompositorService.createSurvey(
-      //   {},
-      //   testsValues.questionsValues.validSurveyName1,
-      //   testsValues.questionsValues.validCreatorId,
-      //   testsValues.questionsValues.validContent1 as IQuestion[],
-      //   {
-      //     answersContent: testsValues.answersValues.validSurvey
-      //       .content as Array<ISection>,
-      //     userId: testsValues.answersValues.validSurvey.userId as string,
-      //   } as Omit<ISurveyAnswers, 'surveyId'>
-      // );
+      const createdSurveyQuestions =
+        await QuestionsService.CreateQuestionSurvey(
+          {},
+          testsValues.questionsValues.validSurveyName1,
+          testsValues.questionsValues.validCreatorId,
+          testsValues.questionsValues.validContent1
+        );
 
-      if (!createdSurvey) {
+      const answersSurvey: unknown = testsValues.answersValues.validSurvey;
+      (answersSurvey as ISurveyAnswers).surveyId =
+        createdSurveyQuestions?.id as string;
+
+      const createdSurveyAnswers = await AnswersService.CreateAnswersSurvey(
+        {},
+        answersSurvey as ISurveyAnswers
+      );
+
+      if (!createdSurveyQuestions || !createdSurveyAnswers) {
         fail();
       }
 
       const foundSurveyResults = await CompositorManager.getSurveyResults(
-        (createdSurvey[0] as ISurveyQuestions).id!
+        createdSurveyQuestions.id as string
       );
-      expect((createdSurvey[0] as ISurveyQuestions).id).toEqual(
+      expect(createdSurveyQuestions.id as string).toEqual(
         (foundSurveyResults[0] as ISurveyQuestions).id
       );
     });

@@ -36,7 +36,3 @@ export const config = {
       .asString(),
   },
 };
-
-// questionsCrud Port: 3002;
-// answersCrud Port: 3001;
-// compositor Port: 3003;

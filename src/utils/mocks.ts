@@ -1,3 +1,5 @@
+import { QuestionType } from '../compositor/interfaces/compositor.interface';
+
 export const testsValues = {
   // TODO: may have to change valid ID's (because id gets created during the creation step)
   questionsValues: {
@@ -6,7 +8,7 @@ export const testsValues = {
     validContent1: [
       {
         questionName: 'is uri a dolphin?',
-        questionType: 'select',
+        questionType: QuestionType.select,
         answers: [
           {
             answer: 'yes',
