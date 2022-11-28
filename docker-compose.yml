@@ -18,7 +18,7 @@ services:
       DB_CONNECTION_URL: mongodb://mongo:27017
       QUESTIONS_CRUD_CONNECTION_URL: http://questions-service:3002
       APPLICATION_PORT: 3002
-    
+
   ansewrs-service:
     depends_on:
       - mongo
@@ -41,5 +41,7 @@ services:
     environment:
       APPLICATION_PORT: 3003
       DB_CONNECTION_URL: mongodb://mongo:27017
+      QUESTIONS_DB_NAME: questions-crud
+      ANSWERS_DB_NAME: answers-crud
     ports:
       - '3003:3003'
