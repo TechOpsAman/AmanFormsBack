@@ -1,5 +1,6 @@
 import request = require('supertest');
 import mongoose from 'mongoose';
+import axios from 'axios';
 import CompositorService from '../utils/services/compositor.service';
 import { Server } from '../server';
 import { config } from '../config';
@@ -18,14 +19,14 @@ import {
 const basePath = '/api/compositor';
 
 const {
-  db: { connectionString },
+  db: { connectionString, dbName },
 } = config;
 
 describe('Compositor Router Module', () => {
   let server: Server;
 
   beforeAll(async () => {
-    await mongoose.connect(connectionString);
+    await mongoose.connect(connectionString, { dbName });
     await mongoose.connection.dropDatabase();
     server = Server.startServer();
   });
@@ -44,17 +45,17 @@ describe('Compositor Router Module', () => {
 
   describe('#Delete /api/compositor/deleteSurvey', () => {
     test('Should return the survey questions an answers', async () => {
-      const createdSurvey = await CompositorService.createSurvey(
-        {},
-        testsValues.questionsValues.validSurveyName1,
-        testsValues.questionsValues.validCreatorId,
-        testsValues.questionsValues.validContent1 as IQuestion[],
-        {
-          answersContent: testsValues.answersValues.validSurvey
-            .content as Array<ISection>,
-          userId: testsValues.answersValues.validSurvey.userId as string,
-        } as Omit<ISurveyAnswers, 'surveyId'>
-      );
+      // const createdSurvey = await CompositorService.createSurvey(
+      //   {},
+      //   testsValues.questionsValues.validSurveyName1,
+      //   testsValues.questionsValues.validCreatorId,
+      //   testsValues.questionsValues.validContent1 as IQuestion[],
+      //   {
+      //     answersContent: testsValues.answersValues.validSurvey
+      //       .content as Array<ISection>,
+      //     userId: testsValues.answersValues.validSurvey.userId as string,
+      //   } as Omit<ISurveyAnswers, 'surveyId'>
+      // );
 
       const response = await request(server.app).delete(
         `${basePath}/deleteSurvey?surveyId=${
@@ -86,17 +87,17 @@ describe('Compositor Router Module', () => {
 
   describe('#Get /api/compositor/getSurveyResults', () => {
     test('Should return the survey questions an answers', async () => {
-      const createdSurvey = await CompositorService.createSurvey(
-        {},
-        testsValues.questionsValues.validSurveyName1,
-        testsValues.questionsValues.validCreatorId,
-        testsValues.questionsValues.validContent1 as IQuestion[],
-        {
-          answersContent: testsValues.answersValues.validSurvey
-            .content as Array<ISection>,
-          userId: testsValues.answersValues.validSurvey.userId as string,
-        } as Omit<ISurveyAnswers, 'surveyId'>
-      );
+      // const createdSurvey = await CompositorService.createSurvey(
+      //   {},
+      //   testsValues.questionsValues.validSurveyName1,
+      //   testsValues.questionsValues.validCreatorId,
+      //   testsValues.questionsValues.validContent1 as IQuestion[],
+      //   {
+      //     answersContent: testsValues.answersValues.validSurvey
+      //       .content as Array<ISection>,
+      //     userId: testsValues.answersValues.validSurvey.userId as string,
+      //   } as Omit<ISurveyAnswers, 'surveyId'>
+      // );
 
       const response = await request(server.app).get(
         `${basePath}/getSurveyResults?surveyId=${

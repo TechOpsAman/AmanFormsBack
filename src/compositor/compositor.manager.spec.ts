@@ -1,4 +1,5 @@
 import * as mongoose from 'mongoose';
+import axios from 'axios';
 import { config } from '../config';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { CompositorManager } from './compositor.manager';
@@ -16,12 +17,12 @@ import {
 import CompositorService from '../utils/services/compositor.service';
 
 const {
-  db: { connectionString },
+  db: { connectionString, dbName },
 } = config;
 
 describe('Compositor Manager Module', () => {
   beforeAll(async () => {
-    await mongoose.connect(connectionString);
+    await mongoose.connect(connectionString, { dbName });
     await mongoose.connection.dropDatabase();
   });
 
@@ -36,17 +37,17 @@ describe('Compositor Manager Module', () => {
 
   describe('Delete a survey', () => {
     test('Should delete survey`s questions and answers', async () => {
-      const createdSurvey = await CompositorService.createSurvey(
-        {},
-        testsValues.questionsValues.validSurveyName1,
-        testsValues.questionsValues.validCreatorId,
-        testsValues.questionsValues.validContent1 as IQuestion[],
-        {
-          answersContent: testsValues.answersValues.validSurvey
-            .content as Array<ISection>,
-          userId: testsValues.answersValues.validSurvey.userId as string,
-        } as Omit<ISurveyAnswers, 'surveyId'>
-      );
+      // const createdSurvey = await CompositorService.createSurvey(
+      //   {},
+      //   testsValues.questionsValues.validSurveyName1,
+      //   testsValues.questionsValues.validCreatorId,
+      //   testsValues.questionsValues.validContent1 as IQuestion[],
+      //   {
+      //     answersContent: testsValues.answersValues.validSurvey
+      //       .content as Array<ISection>,
+      //     userId: testsValues.answersValues.validSurvey.userId as string,
+      //   } as Omit<ISurveyAnswers, 'surveyId'>
+      // );
 
       if (!createdSurvey) {
         fail();
@@ -75,17 +76,17 @@ describe('Compositor Manager Module', () => {
 
   describe('Get survey results', () => {
     test('Should get survey`s questions and answers', async () => {
-      const createdSurvey = await CompositorService.createSurvey(
-        {},
-        testsValues.questionsValues.validSurveyName1,
-        testsValues.questionsValues.validCreatorId,
-        testsValues.questionsValues.validContent1 as IQuestion[],
-        {
-          answersContent: testsValues.answersValues.validSurvey
-            .content as Array<ISection>,
-          userId: testsValues.answersValues.validSurvey.userId as string,
-        } as Omit<ISurveyAnswers, 'surveyId'>
-      );
+      // const createdSurvey = await CompositorService.createSurvey(
+      //   {},
+      //   testsValues.questionsValues.validSurveyName1,
+      //   testsValues.questionsValues.validCreatorId,
+      //   testsValues.questionsValues.validContent1 as IQuestion[],
+      //   {
+      //     answersContent: testsValues.answersValues.validSurvey
+      //       .content as Array<ISection>,
+      //     userId: testsValues.answersValues.validSurvey.userId as string,
+      //   } as Omit<ISurveyAnswers, 'surveyId'>
+      // );
 
       if (!createdSurvey) {
         fail();

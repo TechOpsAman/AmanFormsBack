@@ -38,4 +38,21 @@ export default class AnswersService {
 
     return surveyAnswers;
   }
+
+  static async CreateAnswersSurvey(
+    headers: any,
+    newSurvey: ISurveyAnswers
+  ): Promise<ISurveyAnswers | null> {
+    const surveyAnswers = axios
+      .post(`${AnswersService.api}/`, newSurvey, {
+        headers,
+      })
+      .then((res) => res.data)
+      .catch((err) => {
+        console.log(err);
+        return null;
+      });
+
+    return surveyAnswers;
+  }
 }

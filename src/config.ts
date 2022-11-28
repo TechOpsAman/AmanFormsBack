@@ -13,14 +13,7 @@ export const config = {
       .get('DB_CONNECTION_URL')
       .default('mongodb://mongo:27017')
       .asString(),
-    answersdbName: env
-      .get('ANSWERS_DB_NAME')
-      .default('answers-crud')
-      .asString(),
-    questionsdbName: env
-      .get('QUESTIONS_DB_NAME')
-      .default('questions-crud')
-      .asString(),
+    dbName: env.get('COMPOSITOR_DB_NAME').default('compositor').asString(),
   },
   answersService: {
     answersCrudConnectionString: env
