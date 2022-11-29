@@ -1,5 +1,3 @@
-import * as mongoose from 'mongoose';
-import { config } from '../config';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { CompositorManager } from './compositor.manager';
 import {
@@ -14,23 +12,14 @@ import {
 import QuestionsService from '../utils/services/questions.service';
 import AnswersService from '../utils/services/answers.service';
 
-const {
-  db: { connectionString, dbName },
-} = config;
-
 describe('Compositor Manager Module', () => {
   beforeAll(async () => {
-    await mongoose.connect(connectionString, { dbName });
-    await mongoose.connection.dropDatabase();
   });
 
   afterEach(async () => {
-    await mongoose.connection.db.dropDatabase();
   });
 
   afterAll(async () => {
-    await mongoose.connection.dropDatabase();
-    await mongoose.connection.close();
   });
 
   describe('Delete a survey', () => {
