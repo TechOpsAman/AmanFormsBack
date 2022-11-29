@@ -3,10 +3,12 @@ import { config } from '../../config';
 import {
   ISurveyQuestions,
   IQuestion,
-} from '../../compositor/interfaces/compositor.interface';
+} from '../../compositor/interfaces/interfaces';
+import { logger } from '../logger';
+import { SeverityLevel } from '../severityLevel';
 
 export default class QuestionsService {
-  static api = `${config.questionsService.questionsCrudConnectionString}/api/questions`;
+  static api = config.questionsService.questionsCrudConnectionString;
 
   static async getQuestionSurvey(
     headers: any,
@@ -18,7 +20,7 @@ export default class QuestionsService {
       })
       .then((res) => res.data)
       .catch((err) => {
-        console.log(err);
+        logger.log(SeverityLevel.Error, err.message);
         return null;
       });
 
@@ -35,7 +37,7 @@ export default class QuestionsService {
       })
       .then((res) => res.data)
       .catch((err) => {
-        console.log(err);
+        logger.log(SeverityLevel.Error, err.message);
         return null;
       });
 
@@ -48,6 +50,7 @@ export default class QuestionsService {
     creatorId: string,
     questionsContent: Array<IQuestion>
   ): Promise<ISurveyQuestions | null> {
+    console.log(`${QuestionsService.api}/createSurvey`);
     const surveyQuestions = await axios
       .post(
         `${QuestionsService.api}/createSurvey`,
@@ -58,11 +61,9 @@ export default class QuestionsService {
       )
       .then((res) => res.data)
       .catch((err) => {
-        console.log('The error is: ' + err);
+        logger.log(SeverityLevel.Error, err.message);
         return null;
       });
-
-    console.log('CreateQuestionSurveyService: ' + surveyQuestions);
 
     return surveyQuestions;
   }

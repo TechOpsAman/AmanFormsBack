@@ -1,10 +1,9 @@
-import { QuestionType } from '../compositor/interfaces/compositor.interface';
+import { QuestionType } from '../compositor/interfaces/interfaces';
 
 export const testsValues = {
-  // TODO: may have to change valid ID's (because id gets created during the creation step)
   questionsValues: {
     validSurveyName1: 'survey123',
-    validCreatorId: 'asdfasdfasdfasdfasdfasd1',
+    validCreatorId: '123456123456123456123456',
     validContent1: [
       {
         questionName: 'is uri a dolphin?',
@@ -23,7 +22,7 @@ export const testsValues = {
   },
   answersValues: {
     validSurvey: {
-      surveyId: '123412341234123412341234', // have to change according to
+      surveyId: '123412341234123412341234',
       userId: '123456123456123456123456',
       content: [
         {

@@ -1,9 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { CompositorManager } from './compositor.manager';
-import {
-  ISurveyAnswers,
-  ISurveyQuestions,
-} from './interfaces/compositor.interface';
+import { ISurveyAnswers, ISurveyQuestions } from './interfaces/interfaces';
 import { testsValues } from '../utils/mocks';
 import {
   SurveyQuestionsNotFoundError,
@@ -13,14 +10,11 @@ import QuestionsService from '../utils/services/questions.service';
 import AnswersService from '../utils/services/answers.service';
 
 describe('Compositor Manager Module', () => {
-  beforeAll(async () => {
-  });
+  beforeAll(async () => {});
 
-  afterEach(async () => {
-  });
+  afterEach(async () => {});
 
-  afterAll(async () => {
-  });
+  afterAll(async () => {});
 
   describe('Delete a survey', () => {
     test('Should delete survey`s questions and answers', async () => {

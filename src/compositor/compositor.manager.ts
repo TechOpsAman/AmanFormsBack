@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {
-  ISurveyQuestions,
-  ISurveyAnswers,
-} from './interfaces/compositor.interface';
+import { ISurveyQuestions, ISurveyAnswers } from './interfaces/interfaces';
 import {
   SurveyAnswersNotFoundError,
   SurveyQuestionsNotFoundError,

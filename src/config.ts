@@ -11,21 +11,21 @@ export const config = {
   answersService: {
     answersCrudConnectionString: env
       .get('ANSWERS_CRUD_CONNECTION_URL')
-      .default('http://answers-service:3001')
+      .default('http://answers-service:3001/api/answers')
       .asString(),
     serviceName: env
       .get('ANSWERS_SERVICE_NAME')
-      .default('answers-crud-service')
+      .default('answers-service')
       .asString(),
   },
   questionsService: {
     questionsCrudConnectionString: env
       .get('QUESTIONS_CRUD_CONNECTION_URL')
-      .default('http://questions-service:3002')
+      .default('http://questions-service:3002/api/questions')
       .asString(),
     serviceName: env
       .get('QUESTIONS_SERVICE_NAME')
-      .default('questions-crud-service')
+      .default('questions-service')
       .asString(),
   },
 };
