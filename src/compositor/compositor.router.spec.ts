@@ -11,8 +11,6 @@ import QuestionsService from '../utils/services/questions.service';
 
 const basePath = '/api/compositor';
 
-
-
 describe('Compositor Router Module', () => {
   let server: Server;
 
@@ -20,8 +18,7 @@ describe('Compositor Router Module', () => {
     server = Server.startServer();
   });
 
-  afterEach(async () => {
-  });
+  afterEach(async () => {});
 
   afterAll(async () => {
     server.closeServer();
@@ -32,7 +29,7 @@ describe('Compositor Router Module', () => {
   describe('#Delete /api/compositor/deleteSurvey', () => {
     test('Should return the survey questions an answers', async () => {
       const createdSurveyQuestions =
-        await QuestionsService.CreateQuestionSurvey(
+        await QuestionsService.createQuestionSurvey(
           {},
           testsValues.questionsValues.validSurveyName1,
           testsValues.questionsValues.validCreatorId,
@@ -43,9 +40,14 @@ describe('Compositor Router Module', () => {
       (answersSurvey as ISurveyAnswers).surveyId =
         createdSurveyQuestions?.id as string;
 
-      const createdSurveyAnswers = await AnswersService.CreateAnswersSurvey(
+      const createdSurveyAnswers = await AnswersService.createAnswersSurvey(
         {},
         answersSurvey as ISurveyAnswers
+      );
+      console.log(
+        'createdSurveyAnswers: ' + createdSurveyAnswers,
+        'createdSurveyQuestions: ' + createdSurveyQuestions,
+        'answersSurvey: ' + answersSurvey
       );
 
       if (!createdSurveyQuestions || !createdSurveyAnswers) {
@@ -78,7 +80,7 @@ describe('Compositor Router Module', () => {
   describe('#Get /api/compositor/getSurveyResults', () => {
     test('Should return the survey questions an answers', async () => {
       const createdSurveyQuestions =
-        await QuestionsService.CreateQuestionSurvey(
+        await QuestionsService.createQuestionSurvey(
           {},
           testsValues.questionsValues.validSurveyName1,
           testsValues.questionsValues.validCreatorId,
@@ -89,9 +91,13 @@ describe('Compositor Router Module', () => {
       (answersSurvey as ISurveyAnswers).surveyId =
         createdSurveyQuestions?.id as string;
 
-      const createdSurveyAnswers = await AnswersService.CreateAnswersSurvey(
+      const createdSurveyAnswers = await AnswersService.createAnswersSurvey(
         {},
         answersSurvey as ISurveyAnswers
+      );
+      console.log(
+        'createdSurveyAnswers: ' + createdSurveyAnswers,
+        'createdSurveyQuestions: ' + createdSurveyQuestions
       );
 
       if (!createdSurveyQuestions || !createdSurveyAnswers) {

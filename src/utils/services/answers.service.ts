@@ -9,7 +9,7 @@ export default class AnswersService {
     headers: any,
     surveyId: string
   ): Promise<ISurveyAnswers | null> {
-    const surveyAnswers = axios
+    const surveyAnswers = await axios
       .get(`${AnswersService.api}/find?surveyId=${surveyId}`, {
         headers,
       })
@@ -26,7 +26,7 @@ export default class AnswersService {
     headers: any,
     surveyId: string
   ): Promise<ISurveyAnswers | null> {
-    const surveyAnswers = axios
+    const surveyAnswers = await axios
       .delete(`${AnswersService.api}/delete?surveyId=${surveyId}`, {
         headers,
       })
@@ -39,19 +39,21 @@ export default class AnswersService {
     return surveyAnswers;
   }
 
-  static async CreateAnswersSurvey(
+  static async createAnswersSurvey(
     headers: any,
     newSurvey: ISurveyAnswers
   ): Promise<ISurveyAnswers | null> {
-    const surveyAnswers = axios
+    const surveyAnswers = await axios
       .post(`${AnswersService.api}/`, newSurvey, {
         headers,
       })
       .then((res) => res.data)
       .catch((err) => {
-        console.log(err);
+        console.log('The error is: ' + err);
         return null;
       });
+
+    console.log('CreateAnswersSurveyService: ' + surveyAnswers);
 
     return surveyAnswers;
   }

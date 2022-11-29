@@ -25,7 +25,7 @@ describe('Compositor Manager Module', () => {
   describe('Delete a survey', () => {
     test('Should delete survey`s questions and answers', async () => {
       const createdSurveyQuestions =
-        await QuestionsService.CreateQuestionSurvey(
+        await QuestionsService.createQuestionSurvey(
           {},
           testsValues.questionsValues.validSurveyName1,
           testsValues.questionsValues.validCreatorId,
@@ -36,7 +36,7 @@ describe('Compositor Manager Module', () => {
       (answersSurvey as ISurveyAnswers).surveyId =
         createdSurveyQuestions?.id as string;
 
-      const createdSurveyAnswers = await AnswersService.CreateAnswersSurvey(
+      const createdSurveyAnswers = await AnswersService.createAnswersSurvey(
         {},
         answersSurvey as ISurveyAnswers
       );
@@ -69,7 +69,7 @@ describe('Compositor Manager Module', () => {
   describe('Get survey results', () => {
     test('Should get survey`s questions and answers', async () => {
       const createdSurveyQuestions =
-        await QuestionsService.CreateQuestionSurvey(
+        await QuestionsService.createQuestionSurvey(
           {},
           testsValues.questionsValues.validSurveyName1,
           testsValues.questionsValues.validCreatorId,
@@ -80,7 +80,7 @@ describe('Compositor Manager Module', () => {
       (answersSurvey as ISurveyAnswers).surveyId =
         createdSurveyQuestions?.id as string;
 
-      const createdSurveyAnswers = await AnswersService.CreateAnswersSurvey(
+      const createdSurveyAnswers = await AnswersService.createAnswersSurvey(
         {},
         answersSurvey as ISurveyAnswers
       );
