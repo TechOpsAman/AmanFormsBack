@@ -1,11 +1,11 @@
 export interface ISurvey {
   surveyId: string;
   userId: string;
-  required: boolean;
   content: Array<ISection>;
 }
 
 export interface ISection {
   questionId: string;
+  required: boolean;
   answers: Array<string>;
 }

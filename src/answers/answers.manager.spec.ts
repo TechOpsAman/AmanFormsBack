@@ -46,7 +46,6 @@ describe('call Manager Module', () => {
       const createdSurvey = await AnswerManager.create({
         surveyId: validSurveyId,
         userId: validUserId,
-        required: true, 
         content: validContent1,
       });
 

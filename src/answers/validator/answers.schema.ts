@@ -2,13 +2,13 @@ import * as Joi from 'joi';
 
 const iSection = Joi.object({
   questionId: Joi.string().required(),
+  required: Joi.boolean().required(),
   answers: Joi.array().items(Joi.string()).required(),
 });
 
 const surveySchema = Joi.object({
   surveyId: Joi.string().length(24).required(),
   userId: Joi.string().hex().length(24).required(),
-  required: Joi.boolean().required(),
   content: Joi.array().items(iSection).required(),
 });
 
