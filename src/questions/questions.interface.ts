@@ -1,7 +1,8 @@
-export interface Survey {
+export interface Survey { 
   id?: string;
   creatorId: string; //add in joi and stuff
   surveyName: string;
+  required: boolean;
   content: Array<Question>;
 }
 

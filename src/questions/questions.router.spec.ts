@@ -6,6 +6,7 @@ import {
   invalidSurveyId,
   validContent1,
   validCreatorId,
+  validrequired,
   validSurveyName1,
   validSurveyName2,
 } from '../utils/mocks';
@@ -72,6 +73,7 @@ describe('Questions Router Module', () => {
       const survey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -106,6 +108,7 @@ describe('Questions Router Module', () => {
       const survey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -136,6 +139,7 @@ describe('Questions Router Module', () => {
       const survey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -166,6 +170,7 @@ describe('Questions Router Module', () => {
       const survey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -188,6 +193,7 @@ describe('Questions Router Module', () => {
       const survey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -212,6 +218,7 @@ describe('Questions Router Module', () => {
       const survey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -229,6 +236,7 @@ describe('Questions Router Module', () => {
       const survey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -248,6 +256,7 @@ describe('Questions Router Module', () => {
       const survey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -265,6 +274,7 @@ describe('Questions Router Module', () => {
       const survey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 

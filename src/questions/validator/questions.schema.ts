@@ -4,6 +4,7 @@ import { QuestionType } from '../questions.interface';
 const questionschema = Joi.object({
   surveyId: Joi.string(),
   surveyName: Joi.string().optional(),
+  required: Joi.boolean().required(),
   content: Joi.array().items(Joi.object({
     questionName: Joi.string(),
     questionType: Joi.string().valid(...Object.values(QuestionType)),
@@ -16,6 +17,7 @@ const questionschema = Joi.object({
 const surveySchema = Joi.object({
   surveyName: Joi.string(),
   creatorId: Joi.string(),
+  required: Joi.boolean().required(),
   content: Joi.array().items(Joi.object({
     questionName: Joi.string(),
     questionType: Joi.string().valid(...Object.values(QuestionType)),

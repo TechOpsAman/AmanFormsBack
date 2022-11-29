@@ -1,10 +1,12 @@
 export const validSurveyName1 = 'survey123';
 export const validSurveyName2 = 'changedSurveyName';
 export const validCreatorId = 'asdfasdfasdfasdfasdfasd1';
+export const validrequired = true;
 export const validContent1 = [
   {
     questionName: 'is uri a dolphin?',
     questionType: 'select',
+    required: true,
     answers: [
       {
         answer: 'yes',
@@ -19,6 +21,7 @@ export const validContent2 = [
   {
     questionName: 'is uri a shark?',
     questionType: 'select',
+    required: true,
     answers: [
       {
         answer: 'hell nha',

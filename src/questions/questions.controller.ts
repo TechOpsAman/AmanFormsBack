@@ -4,7 +4,7 @@ import { QuestionManager } from './questions.manager';
 export class QuestionController {
   static async createSurvey(req: Request, res: Response): Promise<void> {
     res.json(
-      await QuestionManager.createSurvey(req.body.surveyName, req.body.creatorId, req.body.content),
+      await QuestionManager.createSurvey(req.body.surveyName, req.body.creatorId, req.body.required, req.body.content),
     );
   }
 
@@ -13,6 +13,7 @@ export class QuestionController {
       await QuestionManager.updateSurvey(
         req.body.surveyId,
         req.body.surveyName,
+        req.body.required,
         req.body.content,
       ),
     );

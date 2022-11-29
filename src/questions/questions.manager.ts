@@ -9,21 +9,23 @@ export class QuestionManager {
   static async createSurvey(
     surveyName: string,
     creatorId: string,
+    required: boolean,
     content: Array<Question>,
-  ): Promise<Survey> {
-    return QuestionRepository.createSurvey(surveyName, creatorId, content);
+  ): Promise<Survey> {    
+    return QuestionRepository.createSurvey(surveyName, creatorId, required, content);
   }
 
   static async updateSurvey(
     surveyId: string,
     surveyName: string,
+    required: boolean,    
     content: Array<Question>,
   ): Promise<Survey | null> {
     let survey;
     if (surveyName === '' || !surveyName)
       survey = await QuestionRepository.updateSurveyWithoutName(surveyId, content);
     else
-      survey = await QuestionRepository.updateSurvey(surveyId, surveyName, content);
+      survey = await QuestionRepository.updateSurvey(surveyId, surveyName, required, content);
 
     if (!survey) throw new SurveyNotFoundError();
     return survey;

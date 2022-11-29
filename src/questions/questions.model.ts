@@ -61,6 +61,10 @@ const surveySchema: mongoose.Schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  required: {
+    type: Boolean,
+    required: true,
+  },
   content: {
     type: [questionSchema],
     required: true,

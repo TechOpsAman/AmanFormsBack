@@ -10,6 +10,7 @@ import {
   validContent2,
   invalidSurveyId,
   invalidQuestionId,
+  validrequired,
 } from '../utils/mocks';
 import { Question } from './questions.interface';
 import {
@@ -41,6 +42,7 @@ describe('Questions Manager Module', () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
       if (!createdSurvey.id) {
@@ -56,6 +58,7 @@ describe('Questions Manager Module', () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -66,6 +69,7 @@ describe('Questions Manager Module', () => {
       const updatedSurvey = await QuestionManager.updateSurvey(
         createdSurvey.id,
         validSurveyName2,
+        validrequired,
         validContent2 as Question[],
       );
       const survey = await QuestionManager.getSurveyById(createdSurvey.id);
@@ -78,6 +82,7 @@ describe('Questions Manager Module', () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -88,6 +93,7 @@ describe('Questions Manager Module', () => {
       const updatedSurvey = await QuestionManager.updateSurvey(
         createdSurvey.id,
         '',
+        validrequired,
         validContent2 as Question[],
       );
       const survey = await QuestionManager.getSurveyById(createdSurvey.id);
@@ -99,6 +105,7 @@ describe('Questions Manager Module', () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -109,6 +116,7 @@ describe('Questions Manager Module', () => {
         await QuestionManager.updateSurvey(
           invalidSurveyId,
           '',
+          validrequired,
           validContent2 as Question[],
         );
       } catch (err) {
@@ -122,6 +130,7 @@ describe('Questions Manager Module', () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -147,6 +156,7 @@ describe('Questions Manager Module', () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -172,6 +182,7 @@ describe('Questions Manager Module', () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -190,6 +201,7 @@ describe('Questions Manager Module', () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -211,6 +223,7 @@ describe('Questions Manager Module', () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -231,6 +244,7 @@ describe('Questions Manager Module', () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -249,6 +263,7 @@ describe('Questions Manager Module', () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -270,6 +285,7 @@ describe('Questions Manager Module', () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -293,6 +309,7 @@ describe('Questions Manager Module', () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -313,6 +330,7 @@ describe('Questions Manager Module', () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 
@@ -335,6 +353,7 @@ describe('Questions Manager Module', () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         validCreatorId,
+        validrequired,
         validContent1 as Question[],
       );
 

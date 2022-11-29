@@ -5,19 +5,21 @@ export class QuestionRepository {
   static createSurvey(
     surveyName: string,
     creatorId: string,
+    required: boolean,
     content: Array<Question>,
   ): Promise<Survey> {
-    return QuestionModel.create({ surveyName, creatorId, content } as Survey);
+    return QuestionModel.create({ surveyName, creatorId, required, content } as Survey);
   }
 
   static updateSurvey(
     surveyId: string,
     surveyName: string,
+    required: boolean,
     content: Array<Question>,
   ): Promise<Survey | null> {
     return QuestionModel.findByIdAndUpdate(
       surveyId,
-      { surveyName, $push: { content: content } },
+      { surveyName, $push: { content: content }, required },
       { new: true },
     ).exec();
   }
