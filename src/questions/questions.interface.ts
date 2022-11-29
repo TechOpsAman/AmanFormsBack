@@ -2,7 +2,6 @@ export interface Survey {
   id?: string;
   creatorId: string; //add in joi and stuff
   surveyName: string;
-  required: boolean;
   content: Array<Question>;
 }
 
@@ -10,6 +9,7 @@ export interface Question {
   id?: string;
   questionName: string;
   questionType: QuestionType;
+  required: boolean;
   answers?: Array<Answer>;
 }
 export interface Answer {

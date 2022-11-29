@@ -31,6 +31,10 @@ const questionSchema: mongoose.Schema = new mongoose.Schema({
     enum: QuestionType,
     required: true,
   },
+   required: {
+    type: Boolean,
+    required: true,
+  },
   answers: {
     type: [answerSchema], 
     required: true,
@@ -59,10 +63,6 @@ const surveySchema: mongoose.Schema = new mongoose.Schema({
   },
   creatorId: {
     type: String,
-    required: true,
-  },
-  required: {
-    type: Boolean,
     required: true,
   },
   content: {

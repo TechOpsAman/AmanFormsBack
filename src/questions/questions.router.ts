@@ -13,7 +13,7 @@ QuestionRouter.put('/updateSurvey', ValidateRequest(addQuestionReqSchema), wrapA
 QuestionRouter.get('/getSurveyById', ValidateRequest(getSurveyByIdReqSchema), wrapAsync(QuestionController.getSurveyById));
 QuestionRouter.delete('/deleteSurveyById', ValidateRequest(getSurveyByIdReqSchema), wrapAsync(QuestionController.deleteSurveyById));
 
-QuestionRouter.get('/getQuestion', ValidateRequest(getQuestionReqSchema), wrapAsync(QuestionController.getQuestion));
+QuestionRouter.get('/', ValidateRequest(getQuestionReqSchema), wrapAsync(QuestionController.getQuestion));
 QuestionRouter.delete('/deleteQuestion', ValidateRequest(getQuestionReqSchema), wrapAsync(QuestionController.deleteQuestion));
 QuestionRouter.put('/updateQuestion', ValidateRequest(updateQuestionReqSchema), wrapAsync(QuestionController.updateQuestion));
 
