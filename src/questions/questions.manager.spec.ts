@@ -97,8 +97,8 @@ describe('Questions Manager Module', () => {
 
       const updatedSurvey = await QuestionManager.updateSurvey(
         createdSurvey.id,
-        valueSurveyDescription,
         '',
+        valueSurveyDescription,
         validrequired,
         validContent2 as Question[],
       );

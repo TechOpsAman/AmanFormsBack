@@ -47,6 +47,7 @@ describe('Questions Router Module', () => {
         .post(`${basePath}/createSurvey`)
         .send({
           surveyName: validSurveyName1,
+          surveyDescription: valueSurveyDescription,
           creatorId: validCreatorId,
           content: validContent1 as Question[],
         });
@@ -213,45 +214,6 @@ describe('Questions Router Module', () => {
             surveyName: validSurveyName2,
             content: validContent1 as Question[],
           });
-      } catch (err) {
-        expect(err).toBeInstanceOf(ValidationError);
-      }
-    });
-  });
-
-  describe('#Get /api/questions/getQuestion', () => {
-    test('Should return the question', async () => {
-      const survey = await QuestionManager.createSurvey(
-        validSurveyName1,
-        valueSurveyDescription,
-        validCreatorId,
-        validrequired,
-        validContent1 as Question[],
-      );
-
-      const response = await request(server.app).get(
-        `${basePath}/getQuestion?surveyId=${survey.id}&questionId=${survey.content[0].id}`,
-      );
-
-      expect(response.status).toEqual(200);
-      expect(response.headers['content-type']).toMatch(/json/);
-      expect(response.body).toBeDefined();
-      expect(response.body.id).toBeDefined();
-    });
-
-    test('Should throw ValidationError', async () => {
-      const survey = await QuestionManager.createSurvey(
-        validSurveyName1,
-        valueSurveyDescription,
-        validCreatorId,
-        validrequired,
-        validContent1 as Question[],
-      );
-
-      try {
-        await request(server.app).get(
-          `${basePath}/getQuestion?surveyId=${survey.id}&questionId=${invalidSurveyId}`,
-        );
       } catch (err) {
         expect(err).toBeInstanceOf(ValidationError);
       }
