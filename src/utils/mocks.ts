@@ -2,6 +2,7 @@ export const validSurveyName1 = 'survey123';
 export const validSurveyName2 = 'changedSurveyName';
 export const validCreatorId = 'asdfasdfasdfasdfasdfasd1';
 export const validrequired = true;
+export const valueSurveyDescription = 'description'
 export const validContent1 = [
   {
     questionName: 'is uri a dolphin?',

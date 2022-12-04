@@ -8,24 +8,41 @@ import {
 export class QuestionManager {
   static async createSurvey(
     surveyName: string,
+    surveyDescription: string,
     creatorId: string,
     required: boolean,
     content: Array<Question>,
-  ): Promise<Survey> {    
-    return QuestionRepository.createSurvey(surveyName, creatorId, required, content);
+  ): Promise<Survey> {
+    return QuestionRepository.createSurvey(
+      surveyName,
+      surveyDescription,
+      creatorId,
+      required,
+      content,
+    );
   }
 
   static async updateSurvey(
     surveyId: string,
     surveyName: string,
-    required: boolean,    
+    surveyDescription: string,
+    required: boolean,
     content: Array<Question>,
   ): Promise<Survey | null> {
     let survey;
     if (surveyName === '' || !surveyName)
-      survey = await QuestionRepository.updateSurveyWithoutName(surveyId, content);
+      survey = await QuestionRepository.updateSurveyWithoutName(
+        surveyId,
+        content,
+      );
     else
-      survey = await QuestionRepository.updateSurvey(surveyId, surveyName, required, content);
+      survey = await QuestionRepository.updateSurvey(
+        surveyId,
+        surveyName,
+        surveyDescription,
+        required,
+        content,
+      );
 
     if (!survey) throw new SurveyNotFoundError();
     return survey;

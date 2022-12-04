@@ -1,7 +1,8 @@
 export interface Survey { 
   id?: string;
-  creatorId: string; //add in joi and stuff
+  creatorId: string;
   surveyName: string;
+  surveyDescription: string;
   content: Array<Question>;
 }
 

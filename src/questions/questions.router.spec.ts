@@ -9,6 +9,7 @@ import {
   validrequired,
   validSurveyName1,
   validSurveyName2,
+  valueSurveyDescription,
 } from '../utils/mocks';
 import { Question } from './questions.interface';
 import { ValidationError } from '../utils/errors/questions';
@@ -72,6 +73,7 @@ describe('Questions Router Module', () => {
     test('Should return the updated survey', async () => {
       const survey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -107,6 +109,7 @@ describe('Questions Router Module', () => {
     test('Should return the survey', async () => {
       const survey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -138,6 +141,7 @@ describe('Questions Router Module', () => {
     test('Should return the survey', async () => {
       const survey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -169,6 +173,7 @@ describe('Questions Router Module', () => {
     test('Should return the updated question', async () => {
       const survey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -192,6 +197,7 @@ describe('Questions Router Module', () => {
     test('Should throw ValidationError', async () => {
       const survey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -217,6 +223,7 @@ describe('Questions Router Module', () => {
     test('Should return the question', async () => {
       const survey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -235,16 +242,16 @@ describe('Questions Router Module', () => {
     test('Should throw ValidationError', async () => {
       const survey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
       );
 
       try {
-        await request(server.app)
-          .get(
-            `${basePath}/getQuestion?surveyId=${survey.id}&questionId=${invalidSurveyId}`,
-          );
+        await request(server.app).get(
+          `${basePath}/getQuestion?surveyId=${survey.id}&questionId=${invalidSurveyId}`,
+        );
       } catch (err) {
         expect(err).toBeInstanceOf(ValidationError);
       }
@@ -255,6 +262,7 @@ describe('Questions Router Module', () => {
     test('Should return the question', async () => {
       const survey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -273,16 +281,16 @@ describe('Questions Router Module', () => {
     test('Should throw ValidationError', async () => {
       const survey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
       );
 
       try {
-        await request(server.app)
-          .delete(
-            `${basePath}/deleteQuestion?surveyId=${survey.id}&questionId=${invalidSurveyId}`,
-          );
+        await request(server.app).delete(
+          `${basePath}/deleteQuestion?surveyId=${survey.id}&questionId=${invalidSurveyId}`,
+        );
       } catch (err) {
         expect(err).toBeInstanceOf(ValidationError);
       }

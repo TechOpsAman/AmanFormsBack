@@ -11,6 +11,7 @@ import {
   invalidSurveyId,
   invalidQuestionId,
   validrequired,
+  valueSurveyDescription,
 } from '../utils/mocks';
 import { Question } from './questions.interface';
 import {
@@ -41,6 +42,7 @@ describe('Questions Manager Module', () => {
     test('Should create a survey', async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -57,6 +59,7 @@ describe('Questions Manager Module', () => {
     test('Should Update a survey', async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -68,6 +71,7 @@ describe('Questions Manager Module', () => {
 
       const updatedSurvey = await QuestionManager.updateSurvey(
         createdSurvey.id,
+        valueSurveyDescription,
         validSurveyName2,
         validrequired,
         validContent2 as Question[],
@@ -81,6 +85,7 @@ describe('Questions Manager Module', () => {
     test('Should Update a survey without a name', async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -92,6 +97,7 @@ describe('Questions Manager Module', () => {
 
       const updatedSurvey = await QuestionManager.updateSurvey(
         createdSurvey.id,
+        valueSurveyDescription,
         '',
         validrequired,
         validContent2 as Question[],
@@ -104,6 +110,7 @@ describe('Questions Manager Module', () => {
     test('Should throw survey not found error', async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -115,6 +122,7 @@ describe('Questions Manager Module', () => {
       try {
         await QuestionManager.updateSurvey(
           invalidSurveyId,
+          valueSurveyDescription,
           '',
           validrequired,
           validContent2 as Question[],
@@ -129,6 +137,7 @@ describe('Questions Manager Module', () => {
     test('Should get a survey', async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -155,6 +164,7 @@ describe('Questions Manager Module', () => {
     test('Should delete a survey', async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -181,6 +191,7 @@ describe('Questions Manager Module', () => {
     test('Should get a question', async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -200,6 +211,7 @@ describe('Questions Manager Module', () => {
     test('Should throw survey not found error', async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -222,6 +234,7 @@ describe('Questions Manager Module', () => {
     test('Should throw question not found error', async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -243,6 +256,7 @@ describe('Questions Manager Module', () => {
     test('Should delete a question', async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -262,6 +276,7 @@ describe('Questions Manager Module', () => {
     test('Should throw survey not found error', async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -284,6 +299,7 @@ describe('Questions Manager Module', () => {
     test('Should throw question not found error', async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -308,6 +324,7 @@ describe('Questions Manager Module', () => {
     test('Should delete a question', async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -329,6 +346,7 @@ describe('Questions Manager Module', () => {
     test('Should throw survey not found error', async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
@@ -352,6 +370,7 @@ describe('Questions Manager Module', () => {
     test('Should throw question not found error', async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
+        valueSurveyDescription,
         validCreatorId,
         validrequired,
         validContent1 as Question[],
