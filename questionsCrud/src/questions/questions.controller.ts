@@ -1,7 +1,11 @@
-import { Request, Response } from 'express';
-import { QuestionManager } from './questions.manager';
+import { Request, Response } from "express";
+import { QuestionManager } from "./questions.manager";
 
 export class QuestionController {
+  static async getAll(_req: Request, res: Response): Promise<void> {
+    res.json(await QuestionManager.getAll());
+  }
+
   static async createSurvey(req: Request, res: Response): Promise<void> {
     res.json(
       await QuestionManager.createSurvey(
@@ -9,8 +13,8 @@ export class QuestionController {
         req.body.surveyDescription,
         req.body.creatorId,
         req.body.required,
-        req.body.content,
-      ),
+        req.body.content
+      )
     );
   }
 
@@ -21,8 +25,8 @@ export class QuestionController {
         req.body.surveyName,
         req.body.surveyDescription,
         req.body.required,
-        req.body.content,
-      ),
+        req.body.content
+      )
     );
   }
 
@@ -38,8 +42,8 @@ export class QuestionController {
     res.json(
       await QuestionManager.getQuestion(
         req.query.surveyId as string,
-        req.query.questionId as string,
-      ),
+        req.query.questionId as string
+      )
     );
   }
 
@@ -47,8 +51,8 @@ export class QuestionController {
     res.json(
       await QuestionManager.deleteQuestion(
         req.query.surveyId as string,
-        req.query.questionId as string,
-      ),
+        req.query.questionId as string
+      )
     );
   }
 
@@ -57,8 +61,8 @@ export class QuestionController {
       await QuestionManager.updateQuestion(
         req.query.surveyId as string,
         req.query.questionId as string,
-        req.body.content,
-      ),
+        req.body.content
+      )
     );
   }
 }

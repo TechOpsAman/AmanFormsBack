@@ -2,6 +2,10 @@ import { Question, Survey } from './questions.interface';
 import { QuestionModel } from './questions.model';
 
 export class QuestionRepository {
+  static getAll() {
+    return QuestionModel.find({}).exec();
+  }
+
   static createSurvey(
     surveyName: string,
     surveyDescription: string,

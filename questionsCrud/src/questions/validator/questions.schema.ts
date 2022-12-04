@@ -54,6 +54,11 @@ export const getSurveyByIdReqSchema = Joi.object({
   query: surveyId,
   params: {},
 });
+export const getAllReqSchema = Joi.object({
+  body: {},
+  query: {},
+  params: {},
+});
 
 export const getQuestionReqSchema = Joi.object({
   body: {},

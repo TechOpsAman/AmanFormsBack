@@ -8,7 +8,7 @@ import { logger } from './utils/logger';
 import { SeverityLevel } from './utils/severityLevel';
 import { config } from './config';
 import { AppRouter } from './router';
-
+const cors = require("cors");
 export class Server {
   public app: express.Application;
 
@@ -24,6 +24,7 @@ export class Server {
 
   private constructor() {
     this.app = express();
+    this.app.use(cors());
     this.configurationMiddleware();
     this.app.use(AppRouter);
     this.app.use(errorMiddleware);

@@ -6,6 +6,10 @@ import {
   SurveyNotFoundError,
 } from '../utils/errors/questions';
 export class QuestionManager {
+  static async getAll() {
+    return QuestionRepository.getAll(); 
+  }
+
   static async createSurvey(
     surveyName: string,
     surveyDescription: string,
