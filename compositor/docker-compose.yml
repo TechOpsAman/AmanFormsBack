@@ -10,8 +10,7 @@ services:
   questions-service:
     depends_on:
       - mongo
-    image: amanformsback-1-questions-service:latest
-    # build: ./
+    build: ../questionsCrud
     ports:
       - 3002:3002
     environment:
@@ -21,8 +20,7 @@ services:
   answers-service:
     depends_on:
       - mongo
-    image: amanformsback-1-ansewrs-service:latest
-    # build: ./
+    build: ../answersCrud
     ports:
       - '3001:3001'
     environment:
@@ -33,7 +31,7 @@ services:
     depends_on:
       - mongo
       - questions-service
-      - ansewrs-service
+      - answers-service
     image: compositor
     build: ./
     environment:

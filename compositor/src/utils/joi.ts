@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import * as Joi from 'joi';
 import { Request } from 'express';
-import { wrapValidator } from '../utils/wrapper';
+import { wrapValidator } from './wrapper';
 
 const defaultValidationOptions: Joi.ValidationOptions = {
   abortEarly: false,
