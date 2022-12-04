@@ -39,7 +39,7 @@ services:
       DB_CONNECTION_URL: mongodb://mongo:27017
       QUESTIONS_DB_NAME: questions-crud
       ANSWERS_DB_NAME: answers-crud
-      QUESTIONS_CRUD_CONNECTION_URL: http://questions-service:3002
-      ANSWERS_CRUD_CONNECTION_URL: http://answers-service:3001
+      QUESTIONS_CRUD_CONNECTION_URL: http://questions-service:3002/api/questions
+      ANSWERS_CRUD_CONNECTION_URL: http://answers-service:3001/api/answers
     ports:
       - '3003:3003'

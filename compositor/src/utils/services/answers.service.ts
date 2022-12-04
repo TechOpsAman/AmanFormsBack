@@ -12,7 +12,7 @@ export default class AnswersService {
     surveyId: string
   ): Promise<ISurveyAnswers | null> {
     const surveyAnswers = await axios
-      .get(`${AnswersService.api}/find?surveyId=${surveyId}`, {
+      .get(`${AnswersService.api}/getSurveysById?surveyId=${surveyId}`, {
         headers,
       })
       .then((res) => res.data)
