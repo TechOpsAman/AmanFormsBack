@@ -10,14 +10,12 @@ export class QuestionRepository {
     surveyName: string,
     surveyDescription: string,
     creatorId: string,
-    required: boolean,
     content: Array<Question>,
   ): Promise<Survey> {
     return QuestionModel.create({
       surveyName,
       surveyDescription,
       creatorId,
-      required,
       content,
     } as Survey);
   }
@@ -26,12 +24,11 @@ export class QuestionRepository {
     surveyId: string,
     surveyName: string,
     surveyDescription: string,
-    required: boolean,
     content: Array<Question>,
   ): Promise<Survey | null> {
     return QuestionModel.findByIdAndUpdate(
       surveyId,
-      { surveyName, surveyDescription, $push: { content: content }, required },
+      { surveyName, surveyDescription, $push: { content: content } },
       { new: true },
     ).exec();
   }
@@ -43,6 +40,17 @@ export class QuestionRepository {
     return QuestionModel.findByIdAndUpdate(
       surveyId,
       { $push: { content: content } },
+      { new: true },
+    ).exec();
+  }
+
+  static updateContent(
+    surveyId: string,
+    content: Array<Question>,
+  ): Promise<Survey | null> {
+    return QuestionModel.findByIdAndUpdate(
+      surveyId,
+      { content: content },
       { new: true },
     ).exec();
   }

@@ -10,18 +10,20 @@ export class QuestionManager {
     return QuestionRepository.getAll(); 
   }
 
+  static async updateContent(surveyId: string, content: Question[]) {
+    return QuestionRepository.updateContent(surveyId, content); 
+  }
+
   static async createSurvey(
     surveyName: string,
     surveyDescription: string,
     creatorId: string,
-    required: boolean,
     content: Array<Question>,
   ): Promise<Survey> {
     return QuestionRepository.createSurvey(
       surveyName,
       surveyDescription,
       creatorId,
-      required,
       content,
     );
   }
@@ -30,7 +32,6 @@ export class QuestionManager {
     surveyId: string,
     surveyName: string,
     surveyDescription: string,
-    required: boolean,
     content: Array<Question>,
   ): Promise<Survey | null> {
     let survey;
@@ -44,7 +45,6 @@ export class QuestionManager {
         surveyId,
         surveyName,
         surveyDescription,
-        required,
         content,
       );
 

@@ -12,7 +12,15 @@ export class QuestionController {
         req.body.surveyName,
         req.body.surveyDescription,
         req.body.creatorId,
-        req.body.required,
+        req.body.content
+      )
+    );
+  }
+
+  static async updateContent(req: Request, res: Response): Promise<void> {
+    res.json(
+      await QuestionManager.updateContent(
+        req.body.surveyId,
         req.body.content
       )
     );
@@ -24,7 +32,6 @@ export class QuestionController {
         req.body.surveyId,
         req.body.surveyName,
         req.body.surveyDescription,
-        req.body.required,
         req.body.content
       )
     );

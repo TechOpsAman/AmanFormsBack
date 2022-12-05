@@ -6,7 +6,7 @@ import {
   invalidSurveyId,
   validContent1,
   validCreatorId,
-  validrequired,
+  
   validSurveyName1,
   validSurveyName2,
   valueSurveyDescription,
@@ -76,7 +76,7 @@ describe('Questions Router Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 
@@ -112,7 +112,7 @@ describe('Questions Router Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 
@@ -144,7 +144,7 @@ describe('Questions Router Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 
@@ -176,7 +176,7 @@ describe('Questions Router Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 
@@ -200,7 +200,7 @@ describe('Questions Router Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 
@@ -226,7 +226,7 @@ describe('Questions Router Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 
@@ -245,7 +245,7 @@ describe('Questions Router Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 

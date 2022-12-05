@@ -10,7 +10,7 @@ import {
   validContent2,
   invalidSurveyId,
   invalidQuestionId,
-  validrequired,
+  
   valueSurveyDescription,
 } from '../utils/mocks';
 import { Question } from './questions.interface';
@@ -44,7 +44,7 @@ describe('Questions Manager Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
       if (!createdSurvey.id) {
@@ -61,7 +61,7 @@ describe('Questions Manager Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 
@@ -73,7 +73,7 @@ describe('Questions Manager Module', () => {
         createdSurvey.id,
         valueSurveyDescription,
         validSurveyName2,
-        validrequired,
+        
         validContent2 as Question[],
       );
       const survey = await QuestionManager.getSurveyById(createdSurvey.id);
@@ -87,7 +87,7 @@ describe('Questions Manager Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 
@@ -99,7 +99,7 @@ describe('Questions Manager Module', () => {
         createdSurvey.id,
         '',
         valueSurveyDescription,
-        validrequired,
+        
         validContent2 as Question[],
       );
       const survey = await QuestionManager.getSurveyById(createdSurvey.id);
@@ -112,7 +112,7 @@ describe('Questions Manager Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 
@@ -124,7 +124,7 @@ describe('Questions Manager Module', () => {
           invalidSurveyId,
           valueSurveyDescription,
           '',
-          validrequired,
+          
           validContent2 as Question[],
         );
       } catch (err) {
@@ -139,7 +139,7 @@ describe('Questions Manager Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 
@@ -166,7 +166,7 @@ describe('Questions Manager Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 
@@ -193,7 +193,7 @@ describe('Questions Manager Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 
@@ -213,7 +213,7 @@ describe('Questions Manager Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 
@@ -236,7 +236,7 @@ describe('Questions Manager Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 
@@ -258,7 +258,7 @@ describe('Questions Manager Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 
@@ -278,7 +278,7 @@ describe('Questions Manager Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 
@@ -301,7 +301,7 @@ describe('Questions Manager Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 
@@ -326,7 +326,7 @@ describe('Questions Manager Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 
@@ -348,7 +348,7 @@ describe('Questions Manager Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 
@@ -372,7 +372,7 @@ describe('Questions Manager Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        validrequired,
+        
         validContent1 as Question[],
       );
 

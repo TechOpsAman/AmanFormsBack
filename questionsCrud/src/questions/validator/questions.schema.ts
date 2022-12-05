@@ -1,31 +1,60 @@
-import * as Joi from 'joi';
-import { QuestionType } from '../questions.interface';
+import * as Joi from "joi";
+import { QuestionType } from "../questions.interface";
 
 const questionschema = Joi.object({
   surveyId: Joi.string(),
   surveyName: Joi.string().optional(),
-  content: Joi.array().items(Joi.object({
-    questionName: Joi.string(),
-    questionType: Joi.string().valid(...Object.values(QuestionType)),
-    required: Joi.boolean().required(),
-    answers: Joi.array().items(Joi.object({
-      answer: Joi.string(),
-    })),
-  })),
+  surveyDescription: Joi.string().allow("", null).optional(),
+  content: Joi.array()
+    .items(
+      Joi.object({
+        id: Joi.string(),
+        questionName: Joi.string(),
+        questionType: Joi.string().valid(...Object.values(QuestionType)),
+        required: Joi.boolean().required(),
+        answers: Joi.array().items(
+          Joi.object({
+            answer: Joi.string(),
+          })
+        ),
+      })
+    )
+    .optional(),
+});
+const updateContentSchema = Joi.object({
+  surveyId: Joi.string(),
+  content: Joi.array().items(
+    Joi.object({
+      id: Joi.string(),
+      questionName: Joi.string(),
+      questionType: Joi.string().valid(...Object.values(QuestionType)),
+      required: Joi.boolean().required(),
+      answers: Joi.array().items(
+        Joi.object({
+          answer: Joi.string(),
+        })
+      ),
+    })
+  ),
 });
 
 const surveySchema = Joi.object({
-  surveyName: Joi.string().allow('', null).optional(),
-  surveyDescription: Joi.string().allow('', null).optional(),
+  surveyName: Joi.string().allow("", null).optional(),
+  surveyDescription: Joi.string().allow("", null).optional(),
   creatorId: Joi.string(),
-  content: Joi.array().items(Joi.object({
-    questionName: Joi.string(),
-    questionType: Joi.string().valid(...Object.values(QuestionType)),
-    required: Joi.boolean().required(),
-    answers: Joi.array().items(Joi.object({
-      answer: Joi.string(),
-    })),
-  })),
+  content: Joi.array().items(
+    Joi.object({
+      id: Joi.string(),
+      questionName: Joi.string(),
+      questionType: Joi.string().valid(...Object.values(QuestionType)),
+      required: Joi.boolean().required(),
+      answers: Joi.array().items(
+        Joi.object({
+          answer: Joi.string(),
+        })
+      ),
+    })
+  ),
 });
 
 const surveyId = Joi.object({
@@ -45,6 +74,11 @@ export const createSurveyReqSchema = Joi.object({
 
 export const addQuestionReqSchema = Joi.object({
   body: questionschema,
+  query: {},
+  params: {},
+});
+export const updateContentReqSchema = Joi.object({
+  body: updateContentSchema,
   query: {},
   params: {},
 });
