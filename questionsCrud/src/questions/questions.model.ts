@@ -59,12 +59,10 @@ const surveySchema: mongoose.Schema = new mongoose.Schema({
   surveyName: {
     type: String,
     required: true,
-    unique: true,
   },
   surveyDescription: {
     type: String,
     required: true,
-    unique: true,
   },
   creatorId: {
     type: String,

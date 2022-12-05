@@ -15,8 +15,8 @@ const questionschema = Joi.object({
 });
 
 const surveySchema = Joi.object({
-  surveyName: Joi.string(),
-  surveyDescription: Joi.string(),
+  surveyName: Joi.string().allow('', null).optional(),
+  surveyDescription: Joi.string().allow('', null).optional(),
   creatorId: Joi.string(),
   content: Joi.array().items(Joi.object({
     questionName: Joi.string(),
