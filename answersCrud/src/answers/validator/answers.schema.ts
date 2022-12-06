@@ -1,9 +1,10 @@
 import * as Joi from 'joi';
 
 const iSection = Joi.object({
-  questionId: Joi.string().required(),
+  questionName: Joi.string().required(),
+  questionType: Joi.string().required(),
   required: Joi.boolean().required(),
-  answers: Joi.array().items(Joi.string()).required(),
+  answers: Joi.array().items(Joi.string().allow("", null)).required(),
 });
 
 const surveySchema = Joi.object({

@@ -5,7 +5,8 @@ export interface ISurvey {
 }
 
 export interface ISection {
-  questionId: string;
+  questionName: string;
+  questionType: string;
   required: boolean;
   answers: Array<string>;
 }

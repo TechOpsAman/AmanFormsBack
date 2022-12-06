@@ -2,7 +2,11 @@ import * as mongoose from 'mongoose';
 import { ISurvey } from './answers.interface';
 
 const sectionSchema: mongoose.Schema = new mongoose.Schema({
-  questionId: {
+  questionName: {
+    type: String,
+    required: true,
+  },
+  questionType: {
     type: String,
     required: true,
   },

@@ -3,8 +3,6 @@ import { QuestionType } from "../questions.interface";
 
 const questionschema = Joi.object({
   surveyId: Joi.string(),
-  surveyName: Joi.string().optional(),
-  surveyDescription: Joi.string().allow("", null).optional(),
   content: Joi.array()
     .items(
       Joi.object({
@@ -14,7 +12,8 @@ const questionschema = Joi.object({
         required: Joi.boolean().required(),
         answers: Joi.array().items(
           Joi.object({
-            answer: Joi.string(),
+            answer: Joi.string().allow("", null),
+            id: Joi.string().allow("", null).optional(),
           })
         ),
       })
@@ -31,7 +30,8 @@ const updateContentSchema = Joi.object({
       required: Joi.boolean().required(),
       answers: Joi.array().items(
         Joi.object({
-          answer: Joi.string(),
+          answer: Joi.string().allow("", null),
+          id: Joi.string().allow("", null).optional(),
         })
       ),
     })
@@ -50,7 +50,8 @@ const surveySchema = Joi.object({
       required: Joi.boolean().required(),
       answers: Joi.array().items(
         Joi.object({
-          answer: Joi.string(),
+          answer: Joi.string().allow("", null),
+          id: Joi.string().allow("", null).optional(),
         })
       ),
     })
