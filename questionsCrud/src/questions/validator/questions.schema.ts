@@ -3,6 +3,8 @@ import { QuestionType } from "../questions.interface";
 
 const questionschema = Joi.object({
   surveyId: Joi.string(),
+  surveyName: Joi.string(),
+  surveyDescription: Joi.string(),
   content: Joi.array()
     .items(
       Joi.object({

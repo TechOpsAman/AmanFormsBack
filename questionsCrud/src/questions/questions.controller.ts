@@ -5,6 +5,9 @@ export class QuestionController {
   static async getAll(_req: Request, res: Response): Promise<void> {
     res.json(await QuestionManager.getAll());
   }
+  static async updateLastUpdated(req: Request, res: Response): Promise<void> {
+    res.json(await QuestionManager.updateLastUpdated(req.query.id as string));
+  }
 
   static async createSurvey(req: Request, res: Response): Promise<void> {
     res.json(

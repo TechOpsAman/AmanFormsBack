@@ -1,5 +1,5 @@
-import { Question, Survey } from './questions.interface';
-import { QuestionModel } from './questions.model';
+import { Question, Survey } from "./questions.interface";
+import { QuestionModel } from "./questions.model";
 
 export class QuestionRepository {
   static getAll() {
@@ -10,7 +10,7 @@ export class QuestionRepository {
     surveyName: string,
     surveyDescription: string,
     creatorId: string,
-    content: Array<Question>,
+    content: Array<Question>
   ): Promise<Survey> {
     return QuestionModel.create({
       surveyName,
@@ -24,34 +24,34 @@ export class QuestionRepository {
     surveyId: string,
     surveyName: string,
     surveyDescription: string,
-    content: Array<Question>,
+    content: Array<Question>
   ): Promise<Survey | null> {
     return QuestionModel.findByIdAndUpdate(
       surveyId,
       { surveyName, surveyDescription, $push: { content: content } },
-      { new: true },
+      { new: true }
     ).exec();
   }
 
   static updateSurveyWithoutName(
     surveyId: string,
-    content: Array<Question>,
+    content: Array<Question>
   ): Promise<Survey | null> {
     return QuestionModel.findByIdAndUpdate(
       surveyId,
       { $push: { content: content } },
-      { new: true },
+      { new: true }
     ).exec();
   }
 
   static updateContent(
     surveyId: string,
-    content: Array<Question>,
+    content: Array<Question>
   ): Promise<Survey | null> {
     return QuestionModel.findByIdAndUpdate(
       surveyId,
       { content: content },
-      { new: true },
+      { new: true }
     ).exec();
   }
 
@@ -63,16 +63,24 @@ export class QuestionRepository {
     return QuestionModel.findByIdAndDelete(surveyId).exec();
   }
 
+  static updateLastUpdated(surveyId: string): Promise<Survey | null> {
+    return QuestionModel.findByIdAndUpdate(
+      surveyId,
+      { lastUpdated: Date.now() },
+      { new: true }
+    ).exec();
+  }
+
   static deleteQuestion(
     surveyId: string,
-    question: Question,
+    question: Question
   ): Promise<Survey | null> {
     return QuestionModel.findByIdAndUpdate(
       surveyId,
       {
         $pull: { content: question },
       },
-      { new: true },
+      { new: true }
     ).exec();
   }
 }

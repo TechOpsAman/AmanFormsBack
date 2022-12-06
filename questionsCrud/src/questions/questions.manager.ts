@@ -9,6 +9,9 @@ export class QuestionManager {
   static async getAll() {
     return QuestionRepository.getAll(); 
   }
+  static async updateLastUpdated(surveyId: string) {
+    return QuestionRepository.updateLastUpdated(surveyId); 
+  }
 
   static async updateContent(surveyId: string, content: Question[]) {
     return QuestionRepository.updateContent(surveyId, content); 
