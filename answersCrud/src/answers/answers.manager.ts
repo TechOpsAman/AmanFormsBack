@@ -1,6 +1,6 @@
-import { AnswerRepository } from './answers.repository';
-import { ISurvey } from './answers.interface';
-import { SurveyNotFound } from '../utils/errors/answer';
+import { AnswerRepository } from "./answers.repository";
+import { ISurvey } from "./answers.interface";
+import { SurveyNotFound } from "../utils/errors/answer";
 
 export class AnswerManager {
   static async create(newSurvey: ISurvey): Promise<ISurvey> {
@@ -16,10 +16,12 @@ export class AnswerManager {
     }
   }
 
-  static async deleteSurveyById(surveyId: string): Promise<ISurvey[] | null> {
-    const survey = await AnswerRepository.deleteSurveyById(surveyId);
+  static async deleteSurveyById(surveyId: string): Promise<number | null> {
+    const numberOfDeletedSurveys = await AnswerRepository.deleteSurveyById(
+      surveyId
+    );
 
-    if (!survey) throw new SurveyNotFound();
-    return survey;
+    if (!numberOfDeletedSurveys) throw new SurveyNotFound();
+    return numberOfDeletedSurveys;
   }
 }

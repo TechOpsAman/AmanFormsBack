@@ -27,8 +27,8 @@ export default class AnswersService {
   static async deleteAnswer(
     headers: any,
     surveyId: string
-  ): Promise<ISurveyAnswers[] | null> {
-    const surveyAnswers = await axios
+  ): Promise<number | null> {
+    const numberOfSurveyAnswersDeleted = await axios
       .delete(`${AnswersService.api}/delete?surveyId=${surveyId}`, {
         headers,
       })
@@ -38,7 +38,7 @@ export default class AnswersService {
         return null;
       });
 
-    return surveyAnswers;
+    return numberOfSurveyAnswersDeleted;
   }
 
   static async createAnswersSurvey(
