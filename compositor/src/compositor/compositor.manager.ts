@@ -16,9 +16,9 @@ export class CompositorManager {
       surveyId
     );
 
-    if (!surveyQuestions) throw new SurveyQuestionsNotFoundError();
-
     const surveyAnswers = await AnswersService.deleteAnswer({}, surveyId);
+    
+    if (!surveyQuestions) throw new SurveyQuestionsNotFoundError();
 
     if (!surveyAnswers) throw new SurveyAnswersNotFoundError();
 
