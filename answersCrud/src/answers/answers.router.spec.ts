@@ -11,6 +11,7 @@ import {
 } from '../utils/mocks';
 import { ValidationError } from '../utils/errors/answer';
 import { AnswerManager } from './answers.manager';
+import { ISurvey } from './answers.interface';
 
 const basePath = '/api/answers';
 
@@ -71,7 +72,7 @@ describe('Questions Router Module', () => {
   describe('#Get /api/answers/getSurveysById', () => {
     test('Should return the survey', async () => {
       const survey = await AnswerManager.create(
-        validSurvey
+        validSurvey as ISurvey
       );
 
       const response = await request(server.app).get(
@@ -99,7 +100,7 @@ describe('Questions Router Module', () => {
   describe('#Delete /api/answers/deleteSurveysById', () => {
     test('Should delete the survey', async () => {
       const survey = await AnswerManager.create(
-        validSurvey,
+        validSurvey as ISurvey,
       );
 
       const response = await request(server.app)

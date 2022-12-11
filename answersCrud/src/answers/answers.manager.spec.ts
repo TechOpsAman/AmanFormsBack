@@ -9,6 +9,7 @@ import {
   invalidSurveyId,
 } from '../utils/mocks';
 import { SurveyNotFound } from '../utils/errors/answer';
+import { ISection, ISurvey } from './answers.interface';
 
 const {
   db: { connectionString, dbName },
@@ -31,7 +32,7 @@ describe('call Manager Module', () => {
 
   describe('Post a survey', () => {
     test('Should create a survey', async () => {
-      const createdSurvey = await AnswerManager.create(validSurvey);
+      const createdSurvey = await AnswerManager.create(validSurvey as ISurvey);
       if (!createdSurvey.surveyId) {
         fail();
       }
@@ -46,7 +47,7 @@ describe('call Manager Module', () => {
       const createdSurvey = await AnswerManager.create({
         surveyId: validSurveyId,
         userId: validUserId,
-        content: validContent1,
+        content: validContent1 as ISection[],
       });
 
       if (!createdSurvey.surveyId) {
