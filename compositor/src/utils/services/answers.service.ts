@@ -10,7 +10,7 @@ export default class AnswersService {
   static async getAnswer(
     headers: any,
     surveyId: string
-  ): Promise<ISurveyAnswers | null> {
+  ): Promise<ISurveyAnswers[] | null> {
     const surveyAnswers = await axios
       .get(`${AnswersService.api}/getSurveysById?surveyId=${surveyId}`, {
         headers,
@@ -27,7 +27,7 @@ export default class AnswersService {
   static async deleteAnswer(
     headers: any,
     surveyId: string
-  ): Promise<ISurveyAnswers | null> {
+  ): Promise<ISurveyAnswers[] | null> {
     const surveyAnswers = await axios
       .delete(`${AnswersService.api}/delete?surveyId=${surveyId}`, {
         headers,

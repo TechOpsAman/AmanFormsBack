@@ -16,7 +16,7 @@ export class AnswerManager {
     }
   }
 
-  static async deleteSurveyById(surveyId: string): Promise<ISurvey | null> {
+  static async deleteSurveyById(surveyId: string): Promise<ISurvey[] | null> {
     const survey = await AnswerRepository.deleteSurveyById(surveyId);
 
     if (!survey) throw new SurveyNotFound();

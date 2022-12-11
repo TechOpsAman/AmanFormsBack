@@ -10,7 +10,7 @@ import QuestionsService from '../utils/services/questions.service';
 export class CompositorManager {
   static async deleteSurvey(
     surveyId: string
-  ): Promise<(ISurveyQuestions | ISurveyAnswers)[]> {
+  ): Promise<(ISurveyQuestions | ISurveyAnswers[])[]> {
     const surveyQuestions = await QuestionsService.deleteQuestionSurvey(
       {},
       surveyId
@@ -27,7 +27,7 @@ export class CompositorManager {
 
   static async getSurveyResults(
     surveyId: string
-  ): Promise<(ISurveyQuestions | ISurveyAnswers)[]> {
+  ): Promise<(ISurveyQuestions | ISurveyAnswers[])[]> {
     const surveyAnswers = await AnswersService.getAnswer({}, surveyId);
     const surveyQuestions = await QuestionsService.getQuestionSurvey(
       {},
