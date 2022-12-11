@@ -10,7 +10,8 @@ export class AnswerRepository {
     return AnswerModel.find({ surveyId }).exec();
   }
 
-  static deleteSurveyById(surveyId: string): Promise<number | null> {
-    return AnswerModel.deleteMany({ surveyId: surveyId }).exec();
+  static async deleteSurveyById(surveyId: string): Promise<number> {
+    const deleteInfo = await AnswerModel.deleteMany({ surveyId: surveyId }).exec();
+    return deleteInfo.deletedCount;
   }
 }

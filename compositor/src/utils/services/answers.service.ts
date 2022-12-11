@@ -1,8 +1,8 @@
-import axios from 'axios';
-import { config } from '../../config';
-import { ISurveyAnswers } from '../../compositor/interfaces/interfaces';
-import { logger } from '../logger';
-import { SeverityLevel } from '../severityLevel';
+import axios from "axios";
+import { config } from "../../config";
+import { ISurveyAnswers } from "../../compositor/interfaces/interfaces";
+import { logger } from "../logger";
+import { SeverityLevel } from "../severityLevel";
 
 export default class AnswersService {
   static api = config.answersService.answersCrudConnectionString;
@@ -24,10 +24,7 @@ export default class AnswersService {
     return surveyAnswers;
   }
 
-  static async deleteAnswer(
-    headers: any,
-    surveyId: string
-  ): Promise<number | null> {
+  static async deleteAnswer(headers: any, surveyId: string): Promise<number> {
     const numberOfSurveyAnswersDeleted = await axios
       .delete(`${AnswersService.api}/delete?surveyId=${surveyId}`, {
         headers,

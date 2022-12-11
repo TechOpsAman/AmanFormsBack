@@ -16,7 +16,7 @@ export class AnswerManager {
     }
   }
 
-  static async deleteSurveyById(surveyId: string): Promise<number | null> {
+  static async deleteSurveyById(surveyId: string): Promise<number> {
     const numberOfDeletedSurveys = await AnswerRepository.deleteSurveyById(
       surveyId
     );
