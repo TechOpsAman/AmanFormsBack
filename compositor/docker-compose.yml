@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   mongo:
@@ -22,7 +22,7 @@ services:
       - mongo
     build: ../answersCrud
     ports:
-      - '3001:3001'
+      - "3001:3001"
     environment:
       DB_CONNECTION_URL: mongodb://mongo:27017
       APPLICATION_PORT: 3001
@@ -41,5 +41,9 @@ services:
       ANSWERS_DB_NAME: answers-crud
       QUESTIONS_CRUD_CONNECTION_URL: http://questions-service:3002/api/questions
       ANSWERS_CRUD_CONNECTION_URL: http://answers-service:3001/api/answers
+      SHRAGA_URL: https://shraga.shraga.branch-yesodot.org
+      CALLBACK_URL: http://localhost/api/auth/callback
+      ACCESS_TOKEN_NAME: forms-access-token
+      SYSTEM_UNAVAILABLE_URL: /unavailable
     ports:
-      - '3003:3003'
+      - "3003:3003"

@@ -6,6 +6,7 @@ import {
   deleteSurveySchema,
   getSurveyResultsSchema,
 } from './validator/compositor.schema';
+// import * as passport from 'passport';
 
 const compositorRouter: Router = Router();
 

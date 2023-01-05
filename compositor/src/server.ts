@@ -8,6 +8,7 @@ import { logger } from './utils/logger';
 import { SeverityLevel } from './utils/severityLevel';
 import { config } from './config';
 import { AppRouter } from './router';
+import { initPassport } from './utils/express/passport';
 const cors = require("cors");
 export class Server {
   public app: express.Application;
@@ -15,6 +16,7 @@ export class Server {
   private server: http.Server;
 
   public static startServer(): Server {
+    initPassport();
     return new Server();
   }
 
