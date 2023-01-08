@@ -1,20 +1,23 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import * as express from 'express';
-import * as http from 'http';
-import * as bodyParser from 'body-parser';
-import * as morgan from 'morgan';
-import { errorMiddleware } from './utils/errors/errorHandler';
-import { logger } from './utils/logger';
-import { SeverityLevel } from './utils/severityLevel';
-import { config } from './config';
-import { AppRouter } from './router';
-const cors = require("cors");
+import * as express from "express";
+import * as http from "http";
+import * as bodyParser from "body-parser";
+import * as morgan from "morgan";
+import { errorMiddleware } from "./utils/errors/errorHandler";
+import { logger } from "./utils/logger";
+import { SeverityLevel } from "./utils/severityLevel";
+import { config } from "./config";
+import { AppRouter } from "./router";
+import { initPassport } from "./utils/express/passport";
+import * as cookieParser from "cookie-parser";
+import * as cors from "cors";
 export class Server {
   public app: express.Application;
 
   private server: http.Server;
 
   public static startServer(): Server {
+    initPassport();
     return new Server();
   }
 
@@ -24,6 +27,7 @@ export class Server {
 
   private constructor() {
     this.app = express();
+    this.app.use(cookieParser());
     this.app.use(cors());
     this.configurationMiddleware();
     this.app.use(AppRouter);
@@ -41,17 +45,18 @@ export class Server {
     res: express.Response,
     next: express.NextFunction
   ) => {
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
     res.setHeader(
-      'Access-Control-Allow-Methods',
-      'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+      "Access-Control-Allow-Methods",
+      "GET, POST, OPTIONS, PUT, PATCH, DELETE"
     );
     res.setHeader(
-      'Access-Control-Allow-Headers',
-      'Authorization, Origin, X-Requested-With, Content-Type'
+      "Access-Control-Allow-Headers",
+      "Authorization, Origin, X-Requested-With, Content-Type"
     );
 
-    if (req.method === 'OPTIONS') {
+    if (req.method === "OPTIONS") {
       return res.status(200).end();
     }
 
@@ -59,7 +64,7 @@ export class Server {
   };
 
   private configurationMiddleware() {
-    this.app.use(morgan('dev'));
+    this.app.use(morgan("dev"));
     this.app.use(this.setHeaders);
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: true }));
