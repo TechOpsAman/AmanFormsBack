@@ -36,6 +36,7 @@ services:
     build: ./
     environment:
       APPLICATION_PORT: 3003
+      TOKEN_SECRET: secret
       DB_CONNECTION_URL: mongodb://mongo:27017
       QUESTIONS_DB_NAME: questions-crud
       ANSWERS_DB_NAME: answers-crud
@@ -45,5 +46,23 @@ services:
       CALLBACK_URL: http://localhost/api/auth/callback
       ACCESS_TOKEN_NAME: forms-access-token
       SYSTEM_UNAVAILABLE_URL: /unavailable
+      ENTITY_TEMPLATE_MANAGER_URI: http://entity-template-manager:8000
+      STORAGE_SERVICE_URI: http://storage-service:8000
+      RELATIONSHIP_TEMPLATE_MANAGER_URI: http://relationship-template-manager:8000
+      INSTANCE_MANAGER_URI: http://instances-manager:8000
+      PERMISSION_API_BASE_URL: http://permission-api:8000
+      KARTOFFEL_BASE_URL: http://kartoffel-tmp:3000
+      STORAGE_SERVICE_FILE_HYPER_LINK: http://jaws.branch-yesodot.org/api/files
     ports:
       - "3003:3003"
+
+  gateway:
+    image: nginx:alpine
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    ports:
+      - 80:80
+
+
+  frontend:
+    image: forms-todoapp

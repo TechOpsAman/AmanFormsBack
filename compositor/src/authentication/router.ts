@@ -8,6 +8,11 @@ const authenticationRouter: Router = Router();
 authenticationRouter.get('/login', passport.authenticate('shraga', { failureRedirect: '/unauthorized' }));
 authenticationRouter.post(
     '/callback',
+    (req, _res, next) => {
+        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+        console.log(req.cookies);
+        next();
+    },
     passport.authenticate('shraga', { failureRedirect: '/unauthorized' }),
     wrapController(AuthenticationController.createTokenAndRedirect),
 );
