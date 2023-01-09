@@ -3,13 +3,14 @@ import { wrapAsync } from '../utils/wrapper';
 import { ValidateRequest } from '../utils/joi';
 import { QuestionController } from './questions.controller';
 import {
-  createSurveyReqSchema, addQuestionReqSchema, getSurveyByIdReqSchema, getQuestionReqSchema, updateQuestionReqSchema, getAllReqSchema, updateContentReqSchema,
+  createSurveyReqSchema, addQuestionReqSchema, getSurveyByIdReqSchema, getQuestionReqSchema, updateQuestionReqSchema, getAllReqSchema, updateContentReqSchema, updateRepliersReqSchema,
 } from './validator/questions.schema';
 
 const QuestionRouter: Router = Router();
 
 QuestionRouter.post('/createSurvey', ValidateRequest(createSurveyReqSchema), wrapAsync(QuestionController.createSurvey));
 QuestionRouter.put('/updateSurvey', ValidateRequest(addQuestionReqSchema), wrapAsync(QuestionController.updateSurvey));
+QuestionRouter.put('/updateRepliers', ValidateRequest(updateRepliersReqSchema), wrapAsync(QuestionController.updateRepliers));
 QuestionRouter.put('/updateContent', ValidateRequest(updateContentReqSchema), wrapAsync(QuestionController.updateContent));
 QuestionRouter.put('/updateLastUpdated', ValidateRequest(getSurveyByIdReqSchema), wrapAsync(QuestionController.updateLastUpdated));
 QuestionRouter.get('/getSurveyById', ValidateRequest(getSurveyByIdReqSchema), wrapAsync(QuestionController.getSurveyById));

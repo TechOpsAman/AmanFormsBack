@@ -80,6 +80,12 @@ const surveySchema: mongoose.Schema = new mongoose.Schema(
       required: true,
       id: true,
     },
+    annonimous: {
+      type: Boolean,
+    },
+    repliers: {
+      type: [String],
+    },
     connectedAt: {
       type: Date,
     },

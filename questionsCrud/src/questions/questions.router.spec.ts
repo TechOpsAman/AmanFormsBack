@@ -76,8 +76,8 @@ describe('Questions Router Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
-        validContent1 as Question[],
+                validContent1 as Question[],
+        false,
       );
 
       const response = await request(server.app)
@@ -112,8 +112,8 @@ describe('Questions Router Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
-        validContent1 as Question[],
+                validContent1 as Question[],
+        false,
       );
 
       const response = await request(server.app).get(
@@ -144,8 +144,8 @@ describe('Questions Router Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
-        validContent1 as Question[],
+                validContent1 as Question[],
+        false,
       );
 
       const response = await request(server.app).delete(
@@ -176,8 +176,8 @@ describe('Questions Router Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
-        validContent1 as Question[],
+                validContent1 as Question[],
+        false,
       );
 
       const response = await request(server.app)
@@ -200,8 +200,8 @@ describe('Questions Router Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
-        validContent1 as Question[],
+                validContent1 as Question[],
+        false,
       );
 
       try {
@@ -226,8 +226,8 @@ describe('Questions Router Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
-        validContent1 as Question[],
+                validContent1 as Question[],
+        false,
       );
 
       const response = await request(server.app).delete(
@@ -245,8 +245,8 @@ describe('Questions Router Module', () => {
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
-        validContent1 as Question[],
+                validContent1 as Question[],
+        false,
       );
 
       try {

@@ -56,13 +56,13 @@ services:
     ports:
       - "3003:3003"
 
-  gateway:
-    image: nginx:alpine
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
-    ports:
-      - 80:80
+  # gateway:
+  #   image: nginx:alpine
+  #   volumes:
+  #     - ./nginx:/etc/nginx/conf.d
+  #   ports:
+  #     - 80:80
 
 
-  frontend:
-    image: forms-todoapp
+  # frontend:
+  #   image: forms-todoapp

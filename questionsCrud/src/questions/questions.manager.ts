@@ -1,20 +1,23 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { QuestionRepository } from './questions.repository';
-import { Question, Survey } from './questions.interface';
+import { QuestionRepository } from "./questions.repository";
+import { Question, Survey } from "./questions.interface";
 import {
   QuestionNotFoundError,
   SurveyNotFoundError,
-} from '../utils/errors/questions';
+} from "../utils/errors/questions";
 export class QuestionManager {
   static async getAll() {
-    return QuestionRepository.getAll(); 
+    return QuestionRepository.getAll();
   }
   static async updateLastUpdated(surveyId: string) {
-    return QuestionRepository.updateLastUpdated(surveyId); 
+    return QuestionRepository.updateLastUpdated(surveyId);
+  }
+  static async updateRepliers(surveyId: string, repliers: string) {
+    return QuestionRepository.updateRepliers(surveyId, repliers);
   }
 
   static async updateContent(surveyId: string, content: Question[]) {
-    return QuestionRepository.updateContent(surveyId, content); 
+    return QuestionRepository.updateContent(surveyId, content);
   }
 
   static async createSurvey(
@@ -22,12 +25,14 @@ export class QuestionManager {
     surveyDescription: string,
     creatorId: string,
     content: Array<Question>,
+    annonimous: boolean
   ): Promise<Survey> {
     return QuestionRepository.createSurvey(
       surveyName,
       surveyDescription,
       creatorId,
       content,
+      annonimous
     );
   }
 
@@ -35,20 +40,20 @@ export class QuestionManager {
     surveyId: string,
     surveyName: string,
     surveyDescription: string,
-    content: Array<Question>,
+    content: Array<Question>
   ): Promise<Survey | null> {
     let survey;
-    if (surveyName === '' || !surveyName)
+    if (surveyName === "" || !surveyName)
       survey = await QuestionRepository.updateSurveyWithoutName(
         surveyId,
-        content,
+        content
       );
     else
       survey = await QuestionRepository.updateSurvey(
         surveyId,
         surveyName,
         surveyDescription,
-        content,
+        content
       );
 
     if (!survey) throw new SurveyNotFoundError();
@@ -71,7 +76,7 @@ export class QuestionManager {
 
   static async getQuestion(
     surveyId: string,
-    questionId: string,
+    questionId: string
   ): Promise<Question | null> {
     const tempSurvey = await QuestionRepository.getSurveyById(surveyId);
     if (!tempSurvey) throw new SurveyNotFoundError();
@@ -89,11 +94,11 @@ export class QuestionManager {
 
   static async deleteQuestion(
     surveyId: string,
-    questionId: string,
+    questionId: string
   ): Promise<Survey | null> {
     const question = (await this.getQuestion(
       surveyId,
-      questionId,
+      questionId
     )) as unknown as Question;
 
     if (!question) throw new QuestionNotFoundError();
@@ -107,7 +112,7 @@ export class QuestionManager {
   static async updateQuestion(
     surveyId: string,
     questionId: string,
-    content: Array<Question>,
+    content: Array<Question>
   ): Promise<Survey | null> {
     const survey = await this.deleteQuestion(surveyId, questionId);
 
@@ -115,7 +120,7 @@ export class QuestionManager {
 
     const updatedSurvey = await QuestionRepository.updateSurveyWithoutName(
       surveyId,
-      content,
+      content
     );
 
     if (!updatedSurvey) throw new SurveyNotFoundError();

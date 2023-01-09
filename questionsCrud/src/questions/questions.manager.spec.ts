@@ -1,7 +1,7 @@
-import * as mongoose from 'mongoose';
-import { config } from '../config';
+import * as mongoose from "mongoose";
+import { config } from "../config";
 /* eslint-disable @typescript-eslint/naming-convention */
-import { QuestionManager } from './questions.manager';
+import { QuestionManager } from "./questions.manager";
 import {
   validSurveyName1,
   validSurveyName2,
@@ -10,20 +10,19 @@ import {
   validContent2,
   invalidSurveyId,
   invalidQuestionId,
-  
   valueSurveyDescription,
-} from '../utils/mocks';
-import { Question } from './questions.interface';
+} from "../utils/mocks";
+import { Question } from "./questions.interface";
 import {
   QuestionNotFoundError,
   SurveyNotFoundError,
-} from '../utils/errors/questions';
+} from "../utils/errors/questions";
 
 const {
   db: { connectionString, dbName },
 } = config;
 
-describe('Questions Manager Module', () => {
+describe("Questions Manager Module", () => {
   beforeAll(async () => {
     await mongoose.connect(connectionString, { dbName });
     await mongoose.connection.dropDatabase();
@@ -38,14 +37,14 @@ describe('Questions Manager Module', () => {
     await mongoose.connection.close();
   });
 
-  describe('Post a survey', () => {
-    test('Should create a survey', async () => {
+  describe("Post a survey", () => {
+    test("Should create a survey", async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
         validContent1 as Question[],
+        false
       );
       if (!createdSurvey.id) {
         fail();
@@ -55,14 +54,14 @@ describe('Questions Manager Module', () => {
     });
   });
 
-  describe('Update a survey', () => {
-    test('Should Update a survey', async () => {
+  describe("Update a survey", () => {
+    test("Should Update a survey", async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
         validContent1 as Question[],
+        false
       );
 
       if (!createdSurvey.id) {
@@ -73,8 +72,8 @@ describe('Questions Manager Module', () => {
         createdSurvey.id,
         valueSurveyDescription,
         validSurveyName2,
-        
-        validContent2 as Question[],
+
+        validContent2 as Question[]
       );
       const survey = await QuestionManager.getSurveyById(createdSurvey.id);
 
@@ -82,13 +81,13 @@ describe('Questions Manager Module', () => {
       expect(updatedSurvey?.surveyName).toEqual(survey?.surveyName);
     });
 
-    test('Should Update a survey without a name', async () => {
+    test("Should Update a survey without a name", async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
         validContent1 as Question[],
+        false
       );
 
       if (!createdSurvey.id) {
@@ -97,23 +96,23 @@ describe('Questions Manager Module', () => {
 
       const updatedSurvey = await QuestionManager.updateSurvey(
         createdSurvey.id,
-        '',
+        "",
         valueSurveyDescription,
-        
-        validContent2 as Question[],
+
+        validContent2 as Question[]
       );
       const survey = await QuestionManager.getSurveyById(createdSurvey.id);
       expect(updatedSurvey?.id).toEqual(survey?.id);
       expect(createdSurvey?.surveyName).toEqual(survey?.surveyName);
     });
 
-    test('Should throw survey not found error', async () => {
+    test("Should throw survey not found error", async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
         validContent1 as Question[],
+        false
       );
 
       if (!createdSurvey.id) {
@@ -123,9 +122,9 @@ describe('Questions Manager Module', () => {
         await QuestionManager.updateSurvey(
           invalidSurveyId,
           valueSurveyDescription,
-          '',
-          
-          validContent2 as Question[],
+          "",
+
+          validContent2 as Question[]
         );
       } catch (err) {
         expect(err).toBeInstanceOf(SurveyNotFoundError);
@@ -133,14 +132,14 @@ describe('Questions Manager Module', () => {
     });
   });
 
-  describe('get a survey by id', () => {
-    test('Should get a survey', async () => {
+  describe("get a survey by id", () => {
+    test("Should get a survey", async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
         validContent1 as Question[],
+        false
       );
 
       if (!createdSurvey.id) {
@@ -151,7 +150,7 @@ describe('Questions Manager Module', () => {
       expect(createdSurvey.id).toEqual(survey?.id);
     });
 
-    test('Should throw survey not found error', async () => {
+    test("Should throw survey not found error", async () => {
       try {
         await QuestionManager.getSurveyById(invalidSurveyId);
       } catch (err) {
@@ -160,14 +159,14 @@ describe('Questions Manager Module', () => {
     });
   });
 
-  describe('delete a survey by id', () => {
-    test('Should delete a survey', async () => {
+  describe("delete a survey by id", () => {
+    test("Should delete a survey", async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
         validContent1 as Question[],
+        false
       );
 
       if (!createdSurvey.id) {
@@ -178,7 +177,7 @@ describe('Questions Manager Module', () => {
       expect(createdSurvey.id).toEqual(survey?.id);
     });
 
-    test('Should throw survey not found error', async () => {
+    test("Should throw survey not found error", async () => {
       try {
         await QuestionManager.deleteSurveyById(invalidSurveyId);
       } catch (err) {
@@ -187,14 +186,14 @@ describe('Questions Manager Module', () => {
     });
   });
 
-  describe('Get a question', () => {
-    test('Should get a question', async () => {
+  describe("Get a question", () => {
+    test("Should get a question", async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
         validContent1 as Question[],
+        false
       );
 
       if (!createdSurvey.id) {
@@ -203,18 +202,18 @@ describe('Questions Manager Module', () => {
 
       const question = await QuestionManager.getQuestion(
         createdSurvey.id,
-        createdSurvey.content[0].id as string,
+        createdSurvey.content[0].id as string
       );
       expect(createdSurvey.content[0].id).toEqual(question?.id);
     });
 
-    test('Should throw survey not found error', async () => {
+    test("Should throw survey not found error", async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
         validContent1 as Question[],
+        false
       );
 
       if (!createdSurvey.id) {
@@ -224,20 +223,20 @@ describe('Questions Manager Module', () => {
       try {
         await QuestionManager.getQuestion(
           invalidSurveyId,
-          createdSurvey.content[0].id as string,
+          createdSurvey.content[0].id as string
         );
       } catch (err) {
         expect(err).toBeInstanceOf(SurveyNotFoundError);
       }
     });
 
-    test('Should throw question not found error', async () => {
+    test("Should throw question not found error", async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
         validContent1 as Question[],
+        false
       );
 
       if (!createdSurvey.id) {
@@ -252,14 +251,14 @@ describe('Questions Manager Module', () => {
     });
   });
 
-  describe('delete a question', () => {
-    test('Should delete a question', async () => {
+  describe("delete a question", () => {
+    test("Should delete a question", async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
         validContent1 as Question[],
+        false
       );
 
       if (!createdSurvey.id) {
@@ -268,18 +267,18 @@ describe('Questions Manager Module', () => {
 
       const question = await QuestionManager.deleteQuestion(
         createdSurvey.id,
-        createdSurvey.content[0].id as string,
+        createdSurvey.content[0].id as string
       );
       expect(createdSurvey.content[0].id).not.toEqual(question?.id);
     });
 
-    test('Should throw survey not found error', async () => {
+    test("Should throw survey not found error", async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
         validContent1 as Question[],
+        false
       );
 
       if (!createdSurvey.id) {
@@ -289,20 +288,20 @@ describe('Questions Manager Module', () => {
       try {
         await QuestionManager.deleteQuestion(
           invalidSurveyId,
-          createdSurvey.content[0].id as string,
+          createdSurvey.content[0].id as string
         );
       } catch (err) {
         expect(err).toBeInstanceOf(SurveyNotFoundError);
       }
     });
 
-    test('Should throw question not found error', async () => {
+    test("Should throw question not found error", async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
         validContent1 as Question[],
+        false
       );
 
       if (!createdSurvey.id) {
@@ -312,7 +311,7 @@ describe('Questions Manager Module', () => {
       try {
         await QuestionManager.deleteQuestion(
           createdSurvey.id,
-          invalidQuestionId,
+          invalidQuestionId
         );
       } catch (err) {
         expect(err).toBeInstanceOf(QuestionNotFoundError);
@@ -320,14 +319,14 @@ describe('Questions Manager Module', () => {
     });
   });
 
-  describe('update a question', () => {
-    test('Should delete a question', async () => {
+  describe("update a question", () => {
+    test("Should delete a question", async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
         validContent1 as Question[],
+        false
       );
 
       if (!createdSurvey.id) {
@@ -337,19 +336,19 @@ describe('Questions Manager Module', () => {
       const question = await QuestionManager.updateQuestion(
         createdSurvey.id,
         createdSurvey.content[0].id as string,
-        validContent2 as Question[],
+        validContent2 as Question[]
       );
 
       expect(createdSurvey.content[0].id).not.toEqual(question?.id);
     });
 
-    test('Should throw survey not found error', async () => {
+    test("Should throw survey not found error", async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
         validContent1 as Question[],
+        false
       );
 
       if (!createdSurvey.id) {
@@ -360,20 +359,20 @@ describe('Questions Manager Module', () => {
         await QuestionManager.updateQuestion(
           invalidSurveyId,
           createdSurvey.content[0].id as string,
-          validContent2 as Question[],
+          validContent2 as Question[]
         );
       } catch (err) {
         expect(err).toBeInstanceOf(SurveyNotFoundError);
       }
     });
 
-    test('Should throw question not found error', async () => {
+    test("Should throw question not found error", async () => {
       const createdSurvey = await QuestionManager.createSurvey(
         validSurveyName1,
         valueSurveyDescription,
         validCreatorId,
-        
         validContent1 as Question[],
+        false
       );
 
       if (!createdSurvey.id) {
@@ -384,7 +383,7 @@ describe('Questions Manager Module', () => {
         await QuestionManager.updateQuestion(
           createdSurvey.id,
           invalidQuestionId,
-          validContent2 as Question[],
+          validContent2 as Question[]
         );
       } catch (err) {
         expect(err).toBeInstanceOf(QuestionNotFoundError);

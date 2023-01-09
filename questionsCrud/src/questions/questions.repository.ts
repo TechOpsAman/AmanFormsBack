@@ -10,13 +10,16 @@ export class QuestionRepository {
     surveyName: string,
     surveyDescription: string,
     creatorId: string,
-    content: Array<Question>
+    content: Array<Question>,
+    annonimous: boolean
   ): Promise<Survey> {
     return QuestionModel.create({
       surveyName,
       surveyDescription,
       creatorId,
       content,
+      annonimous,
+      repliers: [],
     } as Survey);
   }
 
@@ -29,6 +32,17 @@ export class QuestionRepository {
     return QuestionModel.findByIdAndUpdate(
       surveyId,
       { surveyName, surveyDescription, $push: { content: content } },
+      { new: true }
+    ).exec();
+  }
+
+  static updateRepliers(
+    surveyId: string,
+    replier: string
+  ): Promise<Survey | null> {
+    return QuestionModel.findByIdAndUpdate(
+      surveyId,
+      { $push: { repliers: replier } },
       { new: true }
     ).exec();
   }

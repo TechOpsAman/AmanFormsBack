@@ -4,6 +4,8 @@ export interface Survey {
   surveyName: string;
   surveyDescription: string;
   content: Array<Question>;
+  annonimous: boolean;
+  repliers: Array<string>;
 }
 
 export interface Question {

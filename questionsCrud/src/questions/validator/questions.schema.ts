@@ -58,6 +58,12 @@ const surveySchema = Joi.object({
       ),
     })
   ),
+  annonimous: Joi.boolean().default(false),
+});
+
+const repliersSchema = Joi.object({
+  surveyId: Joi.string(),
+  repliers: Joi.string(),
 });
 
 const surveyId = Joi.object({
@@ -71,6 +77,12 @@ const questionId = Joi.object({
 
 export const createSurveyReqSchema = Joi.object({
   body: surveySchema,
+  query: {},
+  params: {},
+});
+
+export const updateRepliersReqSchema = Joi.object({
+  body: repliersSchema,
   query: {},
   params: {},
 });

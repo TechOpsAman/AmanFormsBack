@@ -8,6 +8,9 @@ export class QuestionController {
   static async updateLastUpdated(req: Request, res: Response): Promise<void> {
     res.json(await QuestionManager.updateLastUpdated(req.query.id as string));
   }
+  static async updateRepliers(req: Request, res: Response): Promise<void> {
+    res.json(await QuestionManager.updateRepliers(req.body.surveyId as string, req.body.repliers));
+  }
 
   static async createSurvey(req: Request, res: Response): Promise<void> {
     res.json(
@@ -15,7 +18,8 @@ export class QuestionController {
         req.body.surveyName,
         req.body.surveyDescription,
         req.body.creatorId,
-        req.body.content
+        req.body.content,
+        req.body.annonimous,
       )
     );
   }
