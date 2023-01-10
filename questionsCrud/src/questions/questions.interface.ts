@@ -6,6 +6,7 @@ export interface Survey {
   content: Array<Question>;
   annonimous: boolean;
   repliers: Array<string>;
+  isOpen: boolean;
 }
 
 export interface Question {

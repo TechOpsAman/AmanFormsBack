@@ -15,6 +15,9 @@ export class QuestionManager {
   static async updateRepliers(surveyId: string, repliers: string) {
     return QuestionRepository.updateRepliers(surveyId, repliers);
   }
+  static async updateIsOpen(surveyId: string, isOpen: boolean) {
+    return QuestionRepository.updateIsOpen(surveyId, isOpen);
+  }
 
   static async updateContent(surveyId: string, content: Question[]) {
     return QuestionRepository.updateContent(surveyId, content);

@@ -66,6 +66,11 @@ const repliersSchema = Joi.object({
   repliers: Joi.string(),
 });
 
+const isOpenSchema = Joi.object({
+  surveyId: Joi.string(),
+  isOpen: Joi.boolean(),
+});
+
 const surveyId = Joi.object({
   id: Joi.string(),
 });
@@ -83,6 +88,12 @@ export const createSurveyReqSchema = Joi.object({
 
 export const updateRepliersReqSchema = Joi.object({
   body: repliersSchema,
+  query: {},
+  params: {},
+});
+
+export const updateIsOpenReqSchema = Joi.object({
+  body: isOpenSchema,
   query: {},
   params: {},
 });

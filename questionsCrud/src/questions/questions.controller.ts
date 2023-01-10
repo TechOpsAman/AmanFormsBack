@@ -11,6 +11,9 @@ export class QuestionController {
   static async updateRepliers(req: Request, res: Response): Promise<void> {
     res.json(await QuestionManager.updateRepliers(req.body.surveyId as string, req.body.repliers));
   }
+  static async updateIsOpen(req: Request, res: Response): Promise<void> {
+    res.json(await QuestionManager.updateIsOpen(req.body.surveyId as string, req.body.isOpen));
+  }
 
   static async createSurvey(req: Request, res: Response): Promise<void> {
     res.json(

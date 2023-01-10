@@ -86,6 +86,10 @@ const surveySchema: mongoose.Schema = new mongoose.Schema(
     repliers: {
       type: [String],
     },
+    isOpen: {
+      type: Boolean,
+      default: false,
+    },
     connectedAt: {
       type: Date,
     },

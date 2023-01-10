@@ -20,6 +20,7 @@ export class QuestionRepository {
       content,
       annonimous,
       repliers: [],
+      isOpen: true,
     } as Survey);
   }
 
@@ -43,6 +44,16 @@ export class QuestionRepository {
     return QuestionModel.findByIdAndUpdate(
       surveyId,
       { $push: { repliers: replier } },
+      { new: true }
+    ).exec();
+  }
+  static updateIsOpen(
+    surveyId: string,
+    isOpen: boolean
+  ): Promise<Survey | null> {
+    return QuestionModel.findByIdAndUpdate(
+      surveyId,
+      { isOpen },
       { new: true }
     ).exec();
   }
