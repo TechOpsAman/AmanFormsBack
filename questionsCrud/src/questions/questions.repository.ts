@@ -2,8 +2,8 @@ import { Question, Survey } from "./questions.interface";
 import { QuestionModel } from "./questions.model";
 
 export class QuestionRepository {
-  static getAll() {
-    return QuestionModel.find({}).exec();
+  static getAll(creatorId: string) {
+    return QuestionModel.find({ creatorId }).exec();
   }
 
   static createSurvey(

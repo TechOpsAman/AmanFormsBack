@@ -64,5 +64,5 @@ services:
   #     - 80:80
 
 
-  frontend:
-    image: forms-todoapp
+  # frontend:
+  #   image: forms-todoapp

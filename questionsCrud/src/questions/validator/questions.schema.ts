@@ -74,6 +74,9 @@ const isOpenSchema = Joi.object({
 const surveyId = Joi.object({
   id: Joi.string(),
 });
+const creatorId = Joi.object({
+  creatorId: Joi.string(),
+});
 
 const questionId = Joi.object({
   surveyId: Joi.string(),
@@ -116,7 +119,7 @@ export const getSurveyByIdReqSchema = Joi.object({
 });
 export const getAllReqSchema = Joi.object({
   body: {},
-  query: {},
+  query: creatorId,
   params: {},
 });
 

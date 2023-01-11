@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import { QuestionManager } from "./questions.manager";
 
 export class QuestionController {
-  static async getAll(_req: Request, res: Response): Promise<void> {
-    res.json(await QuestionManager.getAll());
+  static async getAll(req: Request, res: Response): Promise<void> {
+    res.json(await QuestionManager.getAll(req.query.creatorId as string));
   }
   static async updateLastUpdated(req: Request, res: Response): Promise<void> {
     res.json(await QuestionManager.updateLastUpdated(req.query.id as string));
